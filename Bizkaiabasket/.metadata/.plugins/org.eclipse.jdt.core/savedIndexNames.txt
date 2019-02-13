@@ -1,0 +1,20 @@
+INDEX VERSION 1.131+H:\Bizkaiabasket\.metadata\.plugins\org.eclipse.jdt.core
+2380615194.index
+3698321483.index
+60399154.index
+128985424.index
+1863573569.index
+1385405895.index
+2233663078.index
+3500034022.index
+205266257.index
+403892735.index
+2085405811.index
+1447588224.index
+3031633259.index
+3527886708.index
+2320333003.index
+2510039222.index
+2953276012.index
+3190867713.index
+3764880381.index
