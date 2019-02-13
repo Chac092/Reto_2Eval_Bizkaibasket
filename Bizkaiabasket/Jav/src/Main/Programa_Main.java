@@ -774,9 +774,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 		button_28.setBounds(58, 91, 194, 117);
 		Admin_1.add(button_28);
 		
-		button_29 = new JButton("jjjj");
+		button_29 = new JButton("Jokalariak");
 		button_29.setEnabled(false);
-		System.out.println("henen");
 		button_29.addActionListener(this);
 		button_29.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
 		button_29.setBackground(Color.WHITE);
@@ -1456,7 +1455,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		Object Botones = e.getSource();
-		System.out.println("2");
 		if(Botones == btnNewButton) {
 			Igresar_usuario.setVisible(false);
 			Taldeak.setVisible(true);
