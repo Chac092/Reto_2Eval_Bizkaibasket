@@ -11,7 +11,7 @@ public class Jokalariak {
 	
 	//Este metodo servira para dar unos valores a las variables de la clase
 	
-	Jokalariak(String dni_joka, String Izena, String Abizena, String Taldea){
+	public Jokalariak(String dni_joka, String Izena, String Abizena, String Taldea){
 		this.dni_joka = dni_joka;
 		this.Izena = Izena;
 		this.Abizena = Abizena;
@@ -19,7 +19,7 @@ public class Jokalariak {
 	}
 	//Este metodo sirve para tener una copia de una clase entera y poder crear objetos identicos
 	
-	Jokalariak (Jokalariak C){
+	public Jokalariak (Jokalariak C){
 		this.dni_joka = C.dni_joka;
 		this.Izena = C.Izena;
 		this.Abizena = C.Abizena;

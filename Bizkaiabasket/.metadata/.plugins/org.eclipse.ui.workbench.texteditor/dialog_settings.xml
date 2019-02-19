@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="button_29" key="selection"/>
+		<item value="comboBox_5" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="button_29"/>
-			<item value="button_45"/>
-			<item value="button_42"/>
-			<item value="button_41"/>
-			<item value="Mod"/>
-			<item value="button_36"/>
-			<item value="36"/>
-			<item value="btnBorratu"/>
-			<item value="Taldeak"/>
-			<item value="btnSortu"/>
-			<item value="Adelante"/>
-			<item value="Atras"/>
-			<item value="JPanel"/>
-			<item value="Jpanel"/>
-			<item value="jpane"/>
+			<item value="comboBox_5"/>
+			<item value="button_46"/>
+			<item value="button_39"/>
+			<item value="button_38"/>
+			<item value="JComboBox comboBox_3"/>
+			<item value="JComboBox comboBox_2"/>
+			<item value="JComboBox comboBox_2;"/>
+			<item value="btnSalir"/>
+			<item value="btSalir"/>
+			<item value="button_40"/>
+			<item value="comboBox_4"/>
+			<item value="button_37"/>
+			<item value="button_6"/>
+			<item value="btnNewbutton"/>
+			<item value="btnJokalari"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -31,7 +31,7 @@
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="778" key="DIALOG_X_ORIGIN"/>
-		<item value="261" key="DIALOG_Y_ORIGIN"/>
+		<item value="263" key="DIALOG_X_ORIGIN"/>
+		<item value="345" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

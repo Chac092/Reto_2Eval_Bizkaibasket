@@ -12,7 +12,8 @@ public class Taldeak {
 	 private String Udalerri;
 	 private String posta;
 	 private String Zelaia;
-	 static ArrayList <Jokalariak> jokalaria = new ArrayList <Jokalariak>();
+	 private boolean jokatu = false;
+	 private static ArrayList <Jokalariak> jokalaria = new ArrayList <Jokalariak>();
 	 
 	 //metodos
 	 
@@ -97,6 +98,16 @@ public class Taldeak {
 				return false;
 			return true;
 		}
+
+		public static ArrayList <Jokalariak> getJokalaria() {
+			return jokalaria;
+		}
+
+		public static void setJokalaria(ArrayList <Jokalariak> jokalaria) {
+			Taldeak.jokalaria = jokalaria;
+		}
+
+		
 		
 			
 	}
