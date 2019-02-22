@@ -94,6 +94,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JTextField textField_37;
 	private JTextField textField;
 	private JComboBox comboBox_4;
+	private JButton btnLiga;
 	/* Declararemos el passwordfield para controlar la contraseña */
 	private JPasswordField passwordField;
 	/* Declararemos todos los paneles */
@@ -313,244 +314,42 @@ public class Programa_Main extends JFrame implements ActionListener {
 		
 		Taldeak = new JPanel();
 		Taldeak.setVisible(false);
-
-		Partidak = new JPanel();
-		Partidak.setBackground(new Color(102, 153, 255));
-		Partidak.setBounds(0, 0, 304, 501);
-		contentPane.add(Partidak);
-		Partidak.setVisible(false);
-		Partidak.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Verdana", Font.BOLD, 13));
-		comboBox.setBounds(83, 84, 125, 20);
-		Partidak.add(comboBox);
+		Admin_1 = new JPanel();
+		Admin_1.setBackground(new Color(102, 153, 255));
+		Admin_1.setBounds(0, 0, 304, 500);
+		contentPane.add(Admin_1);
+		Admin_1.setVisible(false);
+		Admin_1.setLayout(null);
 		
-		Partidak_Adelante = new JButton("");
-		Partidak_Adelante.addActionListener(this);
-		Partidak_Adelante.setBackground(new Color(102, 153, 255));
-		Partidak_Adelante.setBounds(228, 20, 53, 44);
-		Partidak.add(Partidak_Adelante);
+		button_28 = new JButton("Taldeak");
+		button_28.addActionListener(this);
+		button_28.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
+		button_28.setBackground(Color.WHITE);
+		button_28.setBounds(44, 42, 213, 66);
+		Admin_1.add(button_28);
 		
-		label_4 = new JLabel("Partidak");
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label_4.setBounds(94, 20, 112, 44);
-		Partidak.add(label_4);
+		button_29 = new JButton("Jokalariak");
+		button_29.setEnabled(false);
+		button_29.addActionListener(this);
+		button_29.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
+		button_29.setBackground(Color.WHITE);
+		button_29.setBounds(44, 139, 213, 66);
+		Admin_1.add(button_29);
 		
-		Partidak_Atras = new JButton("");
-		Partidak_Atras.addActionListener(this);
-		Partidak_Atras.setBackground(new Color(102, 153, 255));
-		Partidak_Atras.setBounds(18, 20, 53, 44);
-		Partidak.add(Partidak_Atras);
+		btnErabiltzailea = new JButton("Erabiltzailea");
+		btnErabiltzailea.setBackground(Color.WHITE);
+		btnErabiltzailea.addActionListener(this);
+		btnErabiltzailea.setFont(new Font("Dialog", Font.PLAIN, 35));
+		btnErabiltzailea.setBounds(44, 240, 213, 66);
+		Admin_1.add(btnErabiltzailea);
 		
-		JLabel label_5 = new JLabel("Talde 1");
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_5.setBounds(18, 115, 53, 32);
-		Partidak.add(label_5);
-										
-
-		JLabel label_6 = new JLabel("Talde 2");
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_6.setBounds(93, 115, 64, 32);
-		Partidak.add(label_6);
-				
-		JLabel label_7 = new JLabel("Talde 3");
-		label_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_7.setBounds(175, 115, 64, 32);
-		Partidak.add(label_7);
-		
-		JLabel label_8 = new JLabel("Talde 4");
-		label_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_8.setBounds(234, 115, 47, 32);
-		Partidak.add(label_8);
-												
-		JLabel label_9 = new JLabel("Talde 5");
-		label_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_9.setBounds(18, 191, 64, 32);
-		Partidak.add(label_9);
-		
-		JLabel label_10 = new JLabel("Talde 6");
-		label_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_10.setBounds(93, 191, 64, 32);
-		Partidak.add(label_10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(18, 144, 47, 20);
-		Partidak.add(textField_1);
-				
-				
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(90, 144, 47, 20);
-		Partidak.add(textField_2);
-																		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(174, 144, 47, 20);
-		Partidak.add(textField_3);
-						
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(234, 144, 47, 20);
-		Partidak.add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(18, 220, 47, 20);
-		Partidak.add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(90, 220, 47, 20);
-		Partidak.add(textField_6);
-						
-		JLabel label_11 = new JLabel("Talde 8");
-		label_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_11.setBounds(240, 191, 54, 32);
-		Partidak.add(label_11);
-														
-		JLabel label_12 = new JLabel("Talde 7");
-		label_12.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_12.setBounds(175, 191, 64, 32);
-		Partidak.add(label_12);
-		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(175, 220, 47, 20);
-		Partidak.add(textField_7);
-				
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(234, 220, 47, 20);
-		Partidak.add(textField_8);
-		
-		JLabel lblTalde = new JLabel("Talde 9");
-		lblTalde.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde.setBounds(18, 262, 53, 32);
-		Partidak.add(lblTalde);
-		
-		JLabel lblTalde_1 = new JLabel("Talde 10");
-		lblTalde_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_1.setBounds(93, 262, 64, 32);
-		Partidak.add(lblTalde_1);
-		
-		textField_38 = new JTextField();
-		textField_38.setColumns(10);
-		textField_38.setBounds(18, 291, 47, 20);
-		Partidak.add(textField_38);
-		
-		textField_39 = new JTextField();
-		textField_39.setColumns(10);
-		textField_39.setBounds(90, 291, 47, 20);
-		Partidak.add(textField_39);
-		
-		textField_40 = new JTextField();
-		textField_40.setColumns(10);
-		textField_40.setBounds(174, 291, 47, 20);
-		Partidak.add(textField_40);
-		
-		JLabel lblTalde_2 = new JLabel("Talde 11");
-		lblTalde_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_2.setBounds(175, 262, 64, 32);
-		Partidak.add(lblTalde_2);
-		
-		JLabel lblTalde_3 = new JLabel("Talde 12");
-		lblTalde_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_3.setBounds(234, 262, 60, 32);
-		Partidak.add(lblTalde_3);
-		
-		textField_41 = new JTextField();
-		textField_41.setColumns(10);
-		textField_41.setBounds(234, 291, 47, 20);
-		Partidak.add(textField_41);
-		
-		JLabel lblTalde_7 = new JLabel("Talde 16");
-		lblTalde_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_7.setBounds(240, 337, 54, 32);
-		Partidak.add(lblTalde_7);
-		
-		textField_42 = new JTextField();
-		textField_42.setColumns(10);
-		textField_42.setBounds(234, 366, 47, 20);
-		Partidak.add(textField_42);
-		
-		textField_43 = new JTextField();
-		textField_43.setColumns(10);
-		textField_43.setBounds(175, 366, 47, 20);
-		Partidak.add(textField_43);
-		
-		JLabel lblTalde_6 = new JLabel("Talde 15");
-		lblTalde_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_6.setBounds(175, 337, 64, 32);
-		Partidak.add(lblTalde_6);
-		
-		JLabel lblTalde_5 = new JLabel("Talde 14");
-		lblTalde_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_5.setBounds(93, 337, 64, 32);
-		Partidak.add(lblTalde_5);
-		
-		textField_44 = new JTextField();
-		textField_44.setColumns(10);
-		textField_44.setBounds(90, 366, 47, 20);
-		Partidak.add(textField_44);
-		
-		textField_45 = new JTextField();
-		textField_45.setColumns(10);
-		textField_45.setBounds(18, 366, 47, 20);
-		Partidak.add(textField_45);
-		
-		JLabel lblTalde_4 = new JLabel("Talde 13");
-		lblTalde_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_4.setBounds(18, 337, 64, 32);
-		Partidak.add(lblTalde_4);
-		
-		JLabel lblTalde_8 = new JLabel("Talde 17");
-		lblTalde_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_8.setBounds(18, 412, 64, 32);
-		Partidak.add(lblTalde_8);
-		
-		JLabel lblTalde_9 = new JLabel("Talde 18");
-		lblTalde_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_9.setBounds(93, 412, 64, 32);
-		Partidak.add(lblTalde_9);
-		
-		JLabel lblTalde_10 = new JLabel("Talde 19");
-		lblTalde_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_10.setBounds(175, 412, 64, 32);
-		Partidak.add(lblTalde_10);
-		
-		JLabel lblTalde_11 = new JLabel("Talde 20");
-		lblTalde_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_11.setBounds(240, 412, 54, 32);
-		Partidak.add(lblTalde_11);
-		
-		textField_46 = new JTextField();
-		textField_46.setColumns(10);
-		textField_46.setBounds(234, 441, 47, 20);
-		Partidak.add(textField_46);
-		
-		textField_47 = new JTextField();
-		textField_47.setColumns(10);
-		textField_47.setBounds(175, 441, 47, 20);
-		Partidak.add(textField_47);
-		
-		textField_48 = new JTextField();
-		textField_48.setColumns(10);
-		textField_48.setBounds(90, 441, 47, 20);
-		Partidak.add(textField_48);
-		
-		textField_49 = new JTextField();
-		textField_49.setColumns(10);
-		textField_49.setBounds(18, 441, 47, 20);
-		Partidak.add(textField_49);
-		
-		JSeparator separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setForeground(Color.BLACK);
-		separator.setBackground(Color.BLACK);
-		separator.setBounds(155, 128, 2, 352);
-		Partidak.add(separator);
+		btnLiga = new JButton("Liga");
+		btnLiga.addActionListener(this);
+		btnLiga.setFont(new Font("Dialog", Font.PLAIN, 35));
+		btnLiga.setBackground(Color.WHITE);
+		btnLiga.setBounds(44, 347, 213, 66);
+		Admin_1.add(btnLiga);
 		
 		Taldeak.setBackground(new Color(102, 153, 255));
 		Taldeak.setBounds(0, 0, 304, 501);
@@ -954,35 +753,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Borratu_Taldeak.setBackground(new Color(102, 153, 255));
 		Borratu_Taldeak.setBounds(0, 0, 313, 501);
 		Borratu_Taldeak.setVisible(false);
-		
-		Admin_1 = new JPanel();
-		Admin_1.setBackground(new Color(102, 153, 255));
-		Admin_1.setBounds(0, 0, 304, 500);
-		contentPane.add(Admin_1);
-		Admin_1.setVisible(false);
-		Admin_1.setLayout(null);
-		
-		button_28 = new JButton("Taldeak");
-		button_28.addActionListener(this);
-		button_28.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
-		button_28.setBackground(Color.WHITE);
-		button_28.setBounds(44, 92, 213, 80);
-		Admin_1.add(button_28);
-		
-		button_29 = new JButton("Jokalariak");
-		button_29.setEnabled(false);
-		button_29.addActionListener(this);
-		button_29.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
-		button_29.setBackground(Color.WHITE);
-		button_29.setBounds(44, 211, 213, 87);
-		Admin_1.add(button_29);
-		
-		btnErabiltzailea = new JButton("Erabiltzailea");
-		btnErabiltzailea.setBackground(Color.WHITE);
-		btnErabiltzailea.addActionListener(this);
-		btnErabiltzailea.setFont(new Font("Dialog", Font.PLAIN, 35));
-		btnErabiltzailea.setBounds(44, 350, 213, 87);
-		Admin_1.add(btnErabiltzailea);
 
 		Mod_Taldea_1 = new JPanel();
 		Mod_Taldea_1.setBackground(new Color(102, 153, 255));
@@ -1113,6 +883,244 @@ public class Programa_Main extends JFrame implements ActionListener {
 		btnBorratu.setBackground(Color.WHITE);
 		btnBorratu.setBounds(59, 338, 194, 57);
 		Selekzio_Administrador.add(btnBorratu);
+		
+		Partidak = new JPanel();
+		Partidak.setBackground(new Color(102, 153, 255));
+		Partidak.setBounds(0, 0, 304, 501);
+		contentPane.add(Partidak);
+		Partidak.setVisible(false);
+		Partidak.setLayout(null);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("Verdana", Font.BOLD, 13));
+		comboBox.setBounds(83, 84, 125, 20);
+		Partidak.add(comboBox);
+		
+		Partidak_Adelante = new JButton("");
+		Partidak_Adelante.addActionListener(this);
+		Partidak_Adelante.setBackground(new Color(102, 153, 255));
+		Partidak_Adelante.setBounds(228, 20, 53, 44);
+		Partidak.add(Partidak_Adelante);
+		
+		label_4 = new JLabel("Partidak");
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		label_4.setBounds(94, 20, 112, 44);
+		Partidak.add(label_4);
+		
+		Partidak_Atras = new JButton("");
+		Partidak_Atras.addActionListener(this);
+		Partidak_Atras.setBackground(new Color(102, 153, 255));
+		Partidak_Atras.setBounds(18, 20, 53, 44);
+		Partidak.add(Partidak_Atras);
+		
+		JLabel label_5 = new JLabel("Talde 1");
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_5.setBounds(18, 115, 53, 32);
+		Partidak.add(label_5);
+		
+
+		JLabel label_6 = new JLabel("Talde 2");
+		label_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_6.setBounds(93, 115, 64, 32);
+		Partidak.add(label_6);
+		
+		JLabel label_7 = new JLabel("Talde 3");
+		label_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_7.setBounds(175, 115, 64, 32);
+		Partidak.add(label_7);
+		
+		JLabel label_8 = new JLabel("Talde 4");
+		label_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_8.setBounds(234, 115, 47, 32);
+		Partidak.add(label_8);
+		
+		JLabel label_9 = new JLabel("Talde 5");
+		label_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_9.setBounds(18, 191, 64, 32);
+		Partidak.add(label_9);
+		
+		JLabel label_10 = new JLabel("Talde 6");
+		label_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_10.setBounds(93, 191, 64, 32);
+		Partidak.add(label_10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(18, 144, 47, 20);
+		Partidak.add(textField_1);
+		
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(90, 144, 47, 20);
+		Partidak.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(174, 144, 47, 20);
+		Partidak.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(234, 144, 47, 20);
+		Partidak.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(18, 220, 47, 20);
+		Partidak.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(90, 220, 47, 20);
+		Partidak.add(textField_6);
+		
+		JLabel label_11 = new JLabel("Talde 8");
+		label_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_11.setBounds(240, 191, 54, 32);
+		Partidak.add(label_11);
+		
+		JLabel label_12 = new JLabel("Talde 7");
+		label_12.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_12.setBounds(175, 191, 64, 32);
+		Partidak.add(label_12);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setBounds(175, 220, 47, 20);
+		Partidak.add(textField_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setColumns(10);
+		textField_8.setBounds(234, 220, 47, 20);
+		Partidak.add(textField_8);
+		
+		JLabel lblTalde = new JLabel("Talde 9");
+		lblTalde.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde.setBounds(18, 262, 53, 32);
+		Partidak.add(lblTalde);
+		
+		JLabel lblTalde_1 = new JLabel("Talde 10");
+		lblTalde_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_1.setBounds(93, 262, 64, 32);
+		Partidak.add(lblTalde_1);
+		
+		textField_38 = new JTextField();
+		textField_38.setColumns(10);
+		textField_38.setBounds(18, 291, 47, 20);
+		Partidak.add(textField_38);
+		
+		textField_39 = new JTextField();
+		textField_39.setColumns(10);
+		textField_39.setBounds(90, 291, 47, 20);
+		Partidak.add(textField_39);
+		
+		textField_40 = new JTextField();
+		textField_40.setColumns(10);
+		textField_40.setBounds(174, 291, 47, 20);
+		Partidak.add(textField_40);
+		
+		JLabel lblTalde_2 = new JLabel("Talde 11");
+		lblTalde_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_2.setBounds(175, 262, 64, 32);
+		Partidak.add(lblTalde_2);
+		
+		JLabel lblTalde_3 = new JLabel("Talde 12");
+		lblTalde_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_3.setBounds(234, 262, 60, 32);
+		Partidak.add(lblTalde_3);
+		
+		textField_41 = new JTextField();
+		textField_41.setColumns(10);
+		textField_41.setBounds(234, 291, 47, 20);
+		Partidak.add(textField_41);
+		
+		JLabel lblTalde_7 = new JLabel("Talde 16");
+		lblTalde_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_7.setBounds(240, 337, 54, 32);
+		Partidak.add(lblTalde_7);
+		
+		textField_42 = new JTextField();
+		textField_42.setColumns(10);
+		textField_42.setBounds(234, 366, 47, 20);
+		Partidak.add(textField_42);
+		
+		textField_43 = new JTextField();
+		textField_43.setColumns(10);
+		textField_43.setBounds(175, 366, 47, 20);
+		Partidak.add(textField_43);
+		
+		JLabel lblTalde_6 = new JLabel("Talde 15");
+		lblTalde_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_6.setBounds(175, 337, 64, 32);
+		Partidak.add(lblTalde_6);
+		
+		JLabel lblTalde_5 = new JLabel("Talde 14");
+		lblTalde_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_5.setBounds(93, 337, 64, 32);
+		Partidak.add(lblTalde_5);
+		
+		textField_44 = new JTextField();
+		textField_44.setColumns(10);
+		textField_44.setBounds(90, 366, 47, 20);
+		Partidak.add(textField_44);
+		
+		textField_45 = new JTextField();
+		textField_45.setColumns(10);
+		textField_45.setBounds(18, 366, 47, 20);
+		Partidak.add(textField_45);
+		
+		JLabel lblTalde_4 = new JLabel("Talde 13");
+		lblTalde_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_4.setBounds(18, 337, 64, 32);
+		Partidak.add(lblTalde_4);
+		
+		JLabel lblTalde_8 = new JLabel("Talde 17");
+		lblTalde_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_8.setBounds(18, 412, 64, 32);
+		Partidak.add(lblTalde_8);
+		
+		JLabel lblTalde_9 = new JLabel("Talde 18");
+		lblTalde_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_9.setBounds(93, 412, 64, 32);
+		Partidak.add(lblTalde_9);
+		
+		JLabel lblTalde_10 = new JLabel("Talde 19");
+		lblTalde_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_10.setBounds(175, 412, 64, 32);
+		Partidak.add(lblTalde_10);
+		
+		JLabel lblTalde_11 = new JLabel("Talde 20");
+		lblTalde_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_11.setBounds(240, 412, 54, 32);
+		Partidak.add(lblTalde_11);
+		
+		textField_46 = new JTextField();
+		textField_46.setColumns(10);
+		textField_46.setBounds(234, 441, 47, 20);
+		Partidak.add(textField_46);
+		
+		textField_47 = new JTextField();
+		textField_47.setColumns(10);
+		textField_47.setBounds(175, 441, 47, 20);
+		Partidak.add(textField_47);
+		
+		textField_48 = new JTextField();
+		textField_48.setColumns(10);
+		textField_48.setBounds(90, 441, 47, 20);
+		Partidak.add(textField_48);
+		
+		textField_49 = new JTextField();
+		textField_49.setColumns(10);
+		textField_49.setBounds(18, 441, 47, 20);
+		Partidak.add(textField_49);
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setForeground(Color.BLACK);
+		separator.setBackground(Color.BLACK);
+		separator.setBounds(155, 128, 2, 352);
+		Partidak.add(separator);
 
 		Sailkapena = new JPanel();
 		Sailkapena.setBackground(new Color(102, 153, 255));
@@ -3180,7 +3188,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		clases.copy.Partidak J_Partidak[][]=new clases.copy.Partidak[38][10];
 		for (int i=0;i<19;i++) {
 			for (int j=0;j<10;j++) {
-				clases.copy.Partidak P1 =new clases.copy.Partidak("partida",Taldea.get(J_0[i][2*j]).getIzena(), Taldea.get(J_0[i][2*j+1]).getIzena(), null, 3, 5);
+				clases.copy.Partidak P1 =new clases.copy.Partidak("partida",Taldea.get(J_0[i][2*j]).getIzena(), Taldea.get(J_0[i][2*j+1]).getIzena(), null,0,0);
 				J_Partidak [i][j]=P1;
 				
 				clases.copy.Partidak P2 =new clases.copy.Partidak("Partida",Taldea.get(J_0[i][2*j+1]).getIzena(), Taldea.get(J_0[i][2*j]).getIzena(), null,0,0);
