@@ -3177,15 +3177,14 @@ public class Programa_Main extends JFrame implements ActionListener {
 				{0,15,18,3,16,19,5,1,11,17,12,6,10,9,8,13,4,14,2,7}};
 		
 		
-		clases.copy.Partidak J_Partidak[][]=new clases.copy.Partidak[38][10];
+	
 		for (int i=0;i<19;i++) {
 			for (int j=0;j<10;j++) {
-				clases.copy.Partidak P1 =new clases.copy.Partidak("partida",Taldea.get(J_0[i][2*j]).getIzena(), Taldea.get(J_0[i][2*j+1]).getIzena(), null, 3, 5);
+				P1=new clases.copy.Partidak("partida",Taldea.get(J_0[i][2*j]).getIzena(), Taldea.get(J_0[i][2*j+1]).getIzena(), i, j);
 				J_Partidak [i][j]=P1;
 				
-				clases.copy.Partidak P2 =new clases.copy.Partidak("Partida",Taldea.get(J_0[i][2*j+1]).getIzena(), Taldea.get(J_0[i][2*j]).getIzena(), null,0,0);
+				P1=new Partidak(Taldeak[J_0[i][2*j+1]], Taldeak[J_0[i][2*j]], i, j);
 				J_Partidak [i+19][j]=P1;
 			}
 		}
-	}
 }
