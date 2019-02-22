@@ -99,12 +99,12 @@ public class Taldeak {
 			return true;
 		}
 
-		public  ArrayList <Jokalariak> getJokalaria() {
+		public static ArrayList <Jokalariak> getJokalaria() {
 			return jokalaria;
 		}
 
-		public void setJokalaria(ArrayList <Jokalariak> jokalaria) {
-			jokalaria = jokalaria;
+		public static void setJokalaria(ArrayList <Jokalariak> jokalaria) {
+			Taldeak.jokalaria = jokalaria;
 		}
 
 		

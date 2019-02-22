@@ -2,12 +2,18 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="comboBox_5" key="selection"/>
+		<item value="button_47" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="button_47"/>
+			<item value="button_44"/>
+			<item value="jokalari"/>
+			<item value="bilatu"/>
+			<item value="billatu"/>
+			<item value="button_43"/>
 			<item value="comboBox_5"/>
 			<item value="button_46"/>
 			<item value="button_39"/>
@@ -17,12 +23,6 @@
 			<item value="JComboBox comboBox_2;"/>
 			<item value="btnSalir"/>
 			<item value="btSalir"/>
-			<item value="button_40"/>
-			<item value="comboBox_4"/>
-			<item value="button_37"/>
-			<item value="button_6"/>
-			<item value="btnNewbutton"/>
-			<item value="btnJokalari"/>
 		</list>
 		<list key="replacehistory">
 		</list>

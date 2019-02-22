@@ -13,7 +13,7 @@ public class Taldeak {
 	 private String posta;
 	 private String Zelaia;
 	 private boolean jokatu = false;
-	 private  ArrayList <Jokalariak> jokalaria = new ArrayList <Jokalariak>();
+	 private static ArrayList <Jokalariak> jokalaria = new ArrayList <Jokalariak>();
 	 
 	 //metodos
 	 
@@ -99,12 +99,12 @@ public class Taldeak {
 			return true;
 		}
 
-		public  ArrayList <Jokalariak> getJokalaria() {
+		public static ArrayList <Jokalariak> getJokalaria() {
 			return jokalaria;
 		}
 
-		public void setJokalaria(ArrayList <Jokalariak> jokalaria) {
-			jokalaria = jokalaria;
+		public static void setJokalaria(ArrayList <Jokalariak> jokalaria) {
+			Taldeak.jokalaria = jokalaria;
 		}
 
 		

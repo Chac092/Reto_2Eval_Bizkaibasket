@@ -544,12 +544,9 @@ public class Programa_Main extends JFrame implements ActionListener {
 																																												textField_49.setBounds(18, 441, 47, 20);
 																																												Partidak.add(textField_49);
 																																												
-																																												JSeparator separator = new JSeparator();
-																																												separator.setOrientation(SwingConstants.VERTICAL);
-																																												separator.setForeground(Color.BLACK);
-																																												separator.setBackground(Color.BLACK);
-																																												separator.setBounds(155, 128, 2, 352);
-																																												Partidak.add(separator);
+																																												Component verticalStrut = Box.createVerticalStrut(20);
+																																												verticalStrut.setBounds(156, 144, 1, 327);
+																																												Partidak.add(verticalStrut);
 		Taldeak.setBackground(new Color(102, 153, 255));
 		Taldeak.setBounds(0, 0, 304, 501);
 		contentPane.add(Taldeak);

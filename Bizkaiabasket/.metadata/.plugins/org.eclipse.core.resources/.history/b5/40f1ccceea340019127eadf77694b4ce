@@ -104,7 +104,7 @@ public class Taldeak {
 		}
 
 		public void setJokalaria(ArrayList <Jokalariak> jokalaria) {
-			jokalaria = jokalaria;
+			Taldeak.jokalaria = jokalaria;
 		}
 
 		
