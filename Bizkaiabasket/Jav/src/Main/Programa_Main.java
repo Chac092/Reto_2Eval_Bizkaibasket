@@ -17,6 +17,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -32,6 +35,10 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JSlider;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Programa_Main extends JFrame implements ActionListener {
 	//DefaultComboBoxModel<String> Combo  = new DefaultComboBoxModel<String>();
@@ -54,6 +61,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JButton button_20;
 	private JButton button_22;
 	private JButton button_23;
+	private JComboBox comboBox;
 	/* Orain jtextfield guztiak declaratuko ditugu */
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -104,6 +112,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JPanel Partidak;
 	private JPanel Sailkapena;
 	private JPanel Admin_1;
+	private JButton btnBukatuLiga;
+	int ligaHasita;
 	private JPanel Borratu_Taldeak;
 	private JPanel Borratu_Jokalariak;
 	private JPanel Borratu_Erabiltzailea;
@@ -145,6 +155,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 	/* Botones de taldea */
 	private JButton button_5;
 	private JButton button_6;
+	private JLabel lblNewLabel;
 	/* Aqui declararemos todas las variables que necesitemos */
 	public String Idioma;
 	public String profila;
@@ -168,8 +179,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JLabel label_21;
 	private JLabel label_22;
 	private JLabel label_23;
-	private JLabel label_24;
-	private JLabel label_25;
 	/* Label de borrar equipo */
 	private JLabel label_76;
 	/* Label de borrar jugador */
@@ -195,6 +204,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JButton btnJokalari_12;
 	private JButton btnJokalari_13;
 	private JButton btnJokalari_14;
+	private JLabel lblTalde_20;
 	/* Labels de mod_jugador */
 	private JLabel label_70;
 	private JLabel label_71;
@@ -244,10 +254,14 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JLabel label_27;
 	private JLabel label_28;
 	private JLabel label_29;
+	private JLabel label_5;
+	private JLabel label_32;
 	/* Aqui declararemos los arrailist y el usuario */
 	static ArrayList<Erabiltzailea> Erabiltzaile = new ArrayList<Erabiltzailea>();
 	static Erabiltzailea Admin = new Erabiltzailea("Admin", "Admin", "Admin");
 	static ArrayList<clases.copy.Taldeak> Taldea = new ArrayList<clases.copy.Taldeak>();
+	static clases.copy.Partidak J_Partidak[][]=new clases.copy.Partidak[38][10];
+	static ArrayList <clases.copy.Taldeak> Sailkape = new ArrayList <clases.copy.Taldeak>();
 	/* String del programa */
 	private String Opcion;
 	private String Opcion_1;
@@ -255,6 +269,25 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JComboBox comboBox_1;
 	private JComboBox comboBox_2;
 	private JComboBox comboBox_3;
+	private  JLabel label_6;
+	private JLabel label_7;
+	private JLabel label_8;
+	private JLabel label_9;
+	private JLabel label_10;
+	private JLabel label_11;
+	private JLabel label_12;
+	private JLabel lblTalde;
+	private JLabel lblTalde_1;
+	private JLabel lblTalde_2;
+	private JLabel lblTalde_3;
+	private JLabel lblTalde_4;
+	private JLabel lblTalde_5;
+	private JLabel lblTalde_6;
+	private JLabel lblTalde_7;
+	private JLabel lblTalde_8;
+	private JLabel lblTalde_9;
+	private JLabel lblTalde_10;
+	private JLabel lblTalde_11;
 	int Posicion ;
 	private JButton btnNewButton_1;
 	private JButton button_40;
@@ -267,6 +300,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JButton button_43; 
 	int ja;
 	int ka;
+	int valorcomboPartidas;
 	private JButton button_44;
 	private JButton button_47;
 	private JTextField textField_38;
@@ -281,6 +315,38 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JTextField textField_47;
 	private JTextField textField_48;
 	private JTextField textField_49;
+	private JLabel lblNewLabel_1;
+	private JLabel label_24;
+	private JLabel label_33;
+	private JLabel label_34;
+	private JLabel label_35;
+	private JLabel label_36;
+	private JLabel label_37;
+	private JLabel label_38;
+	private JLabel label_39;
+	private JLabel label_40;
+	private JLabel label_25;
+	private JLabel label_41;
+	private JLabel label_45;
+	private JLabel label_81;
+	private JLabel label_82;
+	private JLabel label_83;
+	private JLabel label_84;
+	private JLabel label_85;
+	private JLabel label_86;
+	private JLabel label_87;
+	private JLabel lblTalde_12;
+	private JLabel lblTalde_13;
+	private JLabel lblTalde_14;
+	private JLabel lblTalde_15;
+	private JLabel lblTalde_16;
+	private JLabel lblTalde_17;
+	private JLabel lblTalde_18;
+	private JLabel lblTalde_19;
+	private JLabel lblTalde_21;
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -314,6 +380,1161 @@ public class Programa_Main extends JFrame implements ActionListener {
 		
 		Taldeak = new JPanel();
 		Taldeak.setVisible(false);
+		
+		Sailkapena = new JPanel();
+		Sailkapena.setBackground(new Color(102, 153, 255));
+		Sailkapena.setBounds(0, 0, 304, 501);
+		contentPane.add(Sailkapena);
+		Sailkapena.setVisible(false);
+		Sailkapena.setLayout(null);
+		
+		label_13 = new JLabel("Sailkapena");
+		label_13.setForeground(Color.WHITE);
+		label_13.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 39));
+		label_13.setBounds(54, 44, 196, 43);
+		Sailkapena.add(label_13);
+		
+		label_14 = new JLabel("1. Talde 1");
+		label_14.setForeground(Color.WHITE);
+		label_14.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_14.setBounds(10, 170, 84, 20);
+		Sailkapena.add(label_14);
+		
+		label_15 = new JLabel("2. Talde 2");
+		label_15.setForeground(Color.WHITE);
+		label_15.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_15.setBounds(10, 201, 84, 20);
+		Sailkapena.add(label_15);
+		
+		label_16 = new JLabel("3. Talde 5");
+		label_16.setForeground(Color.WHITE);
+		label_16.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_16.setBounds(10, 232, 84, 20);
+		Sailkapena.add(label_16);
+			
+		label_17 = new JLabel("4. Talde 3");
+		label_17.setForeground(Color.WHITE);
+		label_17.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_17.setBounds(10, 263, 84, 20);
+		Sailkapena.add(label_17);
+		
+		label_18 = new JLabel("5. Talde 9");
+		label_18.setForeground(Color.WHITE);
+		label_18.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_18.setBounds(10, 294, 84, 20);
+		Sailkapena.add(label_18);
+		
+		label_19 = new JLabel("6. Talde 4");
+		label_19.setForeground(Color.WHITE);
+		label_19.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_19.setBounds(10, 325, 84, 20);
+		Sailkapena.add(label_19);
+		
+		label_20 = new JLabel("7. Talde 6");
+		label_20.setForeground(Color.WHITE);
+		label_20.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_20.setBounds(10, 356, 84, 20);
+		Sailkapena.add(label_20);
+		
+		label_21 = new JLabel("8. Talde 8");
+		label_21.setForeground(Color.WHITE);
+		label_21.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_21.setBounds(10, 387, 84, 20);
+		Sailkapena.add(label_21);
+		
+		label_22 = new JLabel("9. Talde 7");
+		label_22.setForeground(Color.WHITE);
+		label_22.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_22.setBounds(10, 416, 84, 20);
+		Sailkapena.add(label_22);
+		
+		label_23 = new JLabel("10. Talde 10");
+		label_23.setForeground(Color.WHITE);
+		label_23.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_23.setBounds(10, 447, 98, 20);
+		Sailkapena.add(label_23);
+		
+		Sailkapena_Atras = new JButton("");
+		Sailkapena_Atras.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
+		Sailkapena_Atras.addActionListener(this);
+		Sailkapena_Atras.setForeground(new Color(102, 153, 255));
+		Sailkapena_Atras.setBackground(new Color(102, 153, 255));
+		Sailkapena_Atras.setBounds(0, 43, 53, 44);
+		Sailkapena.add(Sailkapena_Atras);
+		
+		Sailkapena_Adelante = new JButton("");
+		Sailkapena_Adelante.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama Verde.png"));
+		Sailkapena_Adelante.addActionListener(this);
+		Sailkapena_Adelante.setForeground(new Color(102, 153, 255));
+		Sailkapena_Adelante.setBackground(new Color(102, 153, 255));
+		Sailkapena_Adelante.setBounds(251, 44, 53, 44);
+		Sailkapena.add(Sailkapena_Adelante);
+		
+		label_24 = new JLabel("0");
+		label_24.setHorizontalAlignment(SwingConstants.CENTER);
+		label_24.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_24.setBounds(104, 170, 49, 20);
+		Sailkapena.add(label_24);
+		
+		label_32 = new JLabel("0");
+		label_32.setHorizontalAlignment(SwingConstants.CENTER);
+		label_32.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_32.setBounds(104, 201, 49, 20);
+		Sailkapena.add(label_32);
+		
+		label_33 = new JLabel("0");
+		label_33.setHorizontalAlignment(SwingConstants.CENTER);
+		label_33.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_33.setBounds(104, 232, 49, 20);
+		Sailkapena.add(label_33);
+		
+		label_34 = new JLabel("0");
+		label_34.setHorizontalAlignment(SwingConstants.CENTER);
+		label_34.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_34.setBounds(104, 263, 49, 20);
+		Sailkapena.add(label_34);
+		
+		label_35 = new JLabel("0");
+		label_35.setHorizontalAlignment(SwingConstants.CENTER);
+		label_35.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_35.setBounds(104, 294, 49, 20);
+		Sailkapena.add(label_35);
+		
+		label_36 = new JLabel("0");
+		label_36.setHorizontalAlignment(SwingConstants.CENTER);
+		label_36.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_36.setBounds(104, 325, 49, 20);
+		Sailkapena.add(label_36);
+		
+		label_37 = new JLabel("0");
+		label_37.setHorizontalAlignment(SwingConstants.CENTER);
+		label_37.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_37.setBounds(104, 356, 49, 20);
+		Sailkapena.add(label_37);
+		
+		label_38 = new JLabel("0");
+		label_38.setHorizontalAlignment(SwingConstants.CENTER);
+		label_38.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_38.setBounds(104, 387, 49, 20);
+		Sailkapena.add(label_38);
+		
+		label_39 = new JLabel("0");
+		label_39.setHorizontalAlignment(SwingConstants.CENTER);
+		label_39.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_39.setBounds(104, 416, 49, 20);
+		Sailkapena.add(label_39);
+		
+		label_40 = new JLabel("0");
+		label_40.setHorizontalAlignment(SwingConstants.CENTER);
+		label_40.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_40.setBounds(104, 447, 49, 20);
+		Sailkapena.add(label_40);
+		
+		lblTalde_12 = new JLabel("11. Talde 11");
+		lblTalde_12.setForeground(Color.WHITE);
+		lblTalde_12.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_12.setBounds(150, 170, 98, 20);
+		Sailkapena.add(lblTalde_12);
+		
+		lblTalde_13 = new JLabel("12. Talde 12");
+		lblTalde_13.setForeground(Color.WHITE);
+		lblTalde_13.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_13.setBounds(150, 201, 98, 20);
+		Sailkapena.add(lblTalde_13);
+		
+		lblTalde_14 = new JLabel("13. Talde 13");
+		lblTalde_14.setForeground(Color.WHITE);
+		lblTalde_14.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_14.setBounds(150, 232, 92, 20);
+		Sailkapena.add(lblTalde_14);
+		
+		lblTalde_15 = new JLabel("14. Talde 14");
+		lblTalde_15.setForeground(Color.WHITE);
+		lblTalde_15.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_15.setBounds(150, 263, 92, 20);
+		Sailkapena.add(lblTalde_15);
+		
+		lblTalde_16 = new JLabel("15. Talde 15");
+		lblTalde_16.setForeground(Color.WHITE);
+		lblTalde_16.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_16.setBounds(150, 294, 92, 20);
+		Sailkapena.add(lblTalde_16);
+		
+		lblTalde_17 = new JLabel("16. Talde 16");
+		lblTalde_17.setForeground(Color.WHITE);
+		lblTalde_17.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_17.setBounds(150, 325, 92, 20);
+		Sailkapena.add(lblTalde_17);
+		
+		lblTalde_18 = new JLabel("17. Talde 17");
+		lblTalde_18.setForeground(Color.WHITE);
+		lblTalde_18.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_18.setBounds(150, 356, 92, 20);
+		Sailkapena.add(lblTalde_18);
+		
+		lblTalde_19 = new JLabel("18. Talde 18");
+		lblTalde_19.setForeground(Color.WHITE);
+		lblTalde_19.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_19.setBounds(150, 387, 92, 20);
+		Sailkapena.add(lblTalde_19);
+		
+		lblTalde_20 = new JLabel("19. Talde 19");
+		lblTalde_20.setForeground(Color.WHITE);
+		lblTalde_20.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_20.setBounds(150, 416, 92, 20);
+		Sailkapena.add(lblTalde_20);
+		
+		lblTalde_21 = new JLabel("20. Talde 20");
+		lblTalde_21.setForeground(Color.WHITE);
+		lblTalde_21.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		lblTalde_21.setBounds(150, 447, 98, 20);
+		Sailkapena.add(lblTalde_21);
+		
+		label_25 = new JLabel("0");
+		label_25.setHorizontalAlignment(SwingConstants.CENTER);
+		label_25.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_25.setBounds(241, 170, 63, 20);
+		Sailkapena.add(label_25);
+		
+		label_41 = new JLabel("0");
+		label_41.setHorizontalAlignment(SwingConstants.CENTER);
+		label_41.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_41.setBounds(251, 201, 43, 20);
+		Sailkapena.add(label_41);
+		
+		label_45 = new JLabel("0");
+		label_45.setHorizontalAlignment(SwingConstants.CENTER);
+		label_45.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_45.setBounds(251, 232, 43, 20);
+		Sailkapena.add(label_45);
+		
+		label_81 = new JLabel("0");
+		label_81.setHorizontalAlignment(SwingConstants.CENTER);
+		label_81.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_81.setBounds(251, 263, 43, 20);
+		Sailkapena.add(label_81);
+		
+		label_82 = new JLabel("0");
+		label_82.setHorizontalAlignment(SwingConstants.CENTER);
+		label_82.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_82.setBounds(251, 294, 43, 20);
+		Sailkapena.add(label_82);
+		
+		label_83 = new JLabel("0");
+		label_83.setHorizontalAlignment(SwingConstants.CENTER);
+		label_83.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_83.setBounds(251, 325, 43, 20);
+		Sailkapena.add(label_83);
+		
+		label_84 = new JLabel("0");
+		label_84.setHorizontalAlignment(SwingConstants.CENTER);
+		label_84.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_84.setBounds(251, 356, 43, 20);
+		Sailkapena.add(label_84);
+		
+		label_85 = new JLabel("0");
+		label_85.setHorizontalAlignment(SwingConstants.CENTER);
+		label_85.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_85.setBounds(251, 387, 43, 20);
+		Sailkapena.add(label_85);
+		
+		label_86 = new JLabel("0");
+		label_86.setHorizontalAlignment(SwingConstants.CENTER);
+		label_86.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_86.setBounds(251, 416, 43, 20);
+		Sailkapena.add(label_86);
+		
+		label_87 = new JLabel("0");
+		label_87.setHorizontalAlignment(SwingConstants.CENTER);
+		label_87.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+		label_87.setBounds(251, 447, 43, 20);
+		Sailkapena.add(label_87);
+		
+		Selekzio_Administrador = new JPanel();
+		Selekzio_Administrador.setBackground(new Color(102, 153, 255));
+		Selekzio_Administrador.setBounds(0, 0, 304, 501);
+		contentPane.add(Selekzio_Administrador);
+		Selekzio_Administrador.setVisible(false);
+		Selekzio_Administrador.setLayout(null);
+		
+		label_46 = new JLabel("Administrazioa");
+		label_46.setForeground(Color.WHITE);
+		label_46.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 31));
+		label_46.setBounds(68, 38, 222, 43);
+		Selekzio_Administrador.add(label_46);
+		
+		btnSortu = new JButton("Sortu");
+		btnSortu.addActionListener(this);
+		btnSortu.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
+		btnSortu.setBackground(Color.WHITE);
+		btnSortu.setBounds(59, 142, 194, 62);
+		Selekzio_Administrador.add(btnSortu);
+		
+		btnAldatu = new JButton("Aldatu");
+		btnAldatu.addActionListener(this);
+		btnAldatu.setEnabled(false);
+		btnAldatu.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
+		btnAldatu.setBackground(Color.WHITE);
+		btnAldatu.setBounds(59, 241, 194, 57);
+		Selekzio_Administrador.add(btnAldatu);
+				
+		Admin_Atras = new JButton("");
+		Admin_Atras.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
+		Admin_Atras.addActionListener(this);
+		Admin_Atras.setBounds(10, 37, 53, 44);
+		Selekzio_Administrador.add(Admin_Atras);
+										
+		Admin_Adelante = new JButton("");
+		Admin_Adelante.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama Verde.png"));
+		Admin_Adelante.addActionListener(this);
+		Admin_Adelante.setBounds(250, 37, 53, 44);
+		Selekzio_Administrador.add(Admin_Adelante);
+		
+		btnBorratu = new JButton("Borratu");
+		btnBorratu.addActionListener(this);
+		btnBorratu.setEnabled(false);
+		btnBorratu.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
+		btnBorratu.setBackground(Color.WHITE);
+		btnBorratu.setBounds(59, 338, 194, 57);
+		Selekzio_Administrador.add(btnBorratu);
+														
+		btnBukatuLiga = new JButton("Bukatu Liga");
+		btnBukatuLiga.addActionListener(this);
+		btnBukatuLiga.setBounds(178, 448, 89, 23);
+		Selekzio_Administrador.add(btnBukatuLiga);
+		
+		Partidak = new JPanel();
+		Partidak.setBackground(new Color(102, 153, 255));
+		Partidak.setBounds(0, 0, 304, 501);
+		contentPane.add(Partidak);
+		Partidak.setVisible(false);
+		Partidak.setLayout(null);
+		
+		comboBox = new JComboBox();
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				System.out.println("me ejecuto");
+				Partidak_erakutsi();
+			}
+		});
+		comboBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					System.out.println("me ejecuto");
+					Partidak_erakutsi();
+			}
+		});
+		
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38"}));
+		comboBox.setFont(new Font("Verdana", Font.BOLD, 13));
+		comboBox.setBounds(186, 75, 53, 29);
+		Partidak.add(comboBox);
+		
+		Partidak_Adelante = new JButton("");
+		Partidak_Adelante.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama Verde.png"));
+		Partidak_Adelante.addActionListener(this);
+		Partidak_Adelante.setBackground(new Color(102, 153, 255));
+		Partidak_Adelante.setBounds(228, 20, 53, 44);
+		Partidak.add(Partidak_Adelante);
+		
+		label_4 = new JLabel("Partidak");
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		label_4.setBounds(94, 20, 112, 44);
+		Partidak.add(label_4);
+		
+		Partidak_Atras = new JButton("");
+		Partidak_Atras.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
+		Partidak_Atras.addActionListener(this);
+		Partidak_Atras.setBackground(new Color(102, 153, 255));
+		Partidak_Atras.setBounds(18, 20, 53, 44);
+		Partidak.add(Partidak_Atras);
+		
+		
+		label_5 = new JLabel("Talde 1");
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_5.setBounds(18, 115, 53, 32);
+		Partidak.add(label_5);
+		
+
+		label_6 = new JLabel("Talde 2");
+		label_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_6.setBounds(93, 115, 64, 32);
+		Partidak.add(label_6);
+		
+		label_7 = new JLabel("Talde 3");
+		label_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_7.setBounds(175, 115, 64, 32);
+		Partidak.add(label_7);
+		
+		label_8 = new JLabel("Talde 4");
+		label_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_8.setBounds(234, 115, 47, 32);
+		Partidak.add(label_8);
+		
+		label_9 = new JLabel("Talde 5");
+		label_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_9.setBounds(18, 191, 64, 32);
+		Partidak.add(label_9);
+		
+		label_10 = new JLabel("Talde 6");
+		label_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_10.setBounds(93, 191, 64, 32);
+		Partidak.add(label_10);
+		
+		textField_1 = new JTextField();
+		textField_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=label_5.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_1.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						for(int i=0; i<20 ;i++) {
+							System.out.println(Sailkape.get(i).getIzena());
+						}
+						if(Sailkape.get(f).getPuntuak()==0) {
+							cargar_sailkpena();
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_1.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_1.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_1.setColumns(10);
+		textField_1.setBounds(18, 144, 47, 20);
+		Partidak.add(textField_1);
+		
+		
+		textField_2 = new JTextField();
+		textField_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=label_6.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_2.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_2.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_2.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_2.setColumns(10);
+		textField_2.setBounds(90, 144, 47, 20);
+		Partidak.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=label_7.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_3.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_3.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_3.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_3.setColumns(10);
+		textField_3.setBounds(174, 144, 47, 20);
+		Partidak.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=label_8.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_4.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_4.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_4.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_4.setColumns(10);
+		textField_4.setBounds(234, 144, 47, 20);
+		Partidak.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=label_9.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_5.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_5.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_5.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_5.setColumns(10);
+		textField_5.setBounds(18, 220, 47, 20);
+		Partidak.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=label_10.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_6.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_6.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_6.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_6.setColumns(10);
+		textField_6.setBounds(90, 220, 47, 20);
+		Partidak.add(textField_6);
+		
+		label_11 = new JLabel("Talde 8");
+		label_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_11.setBounds(240, 191, 54, 32);
+		Partidak.add(label_11);
+		
+		label_12 = new JLabel("Talde 7");
+		label_12.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_12.setBounds(175, 191, 64, 32);
+		Partidak.add(label_12);
+		
+		textField_7 = new JTextField();
+		textField_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=label_12.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_7.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_7.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_7.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_7.setColumns(10);
+		textField_7.setBounds(175, 220, 47, 20);
+		Partidak.add(textField_7);
+		
+		textField_8 = new JTextField();
+		textField_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=label_11.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_8.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_8.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_8.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_8.setColumns(10);
+		textField_8.setBounds(234, 220, 47, 20);
+		Partidak.add(textField_8);
+		
+		lblTalde = new JLabel("Talde 9");
+		lblTalde.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde.setBounds(18, 262, 53, 32);
+		Partidak.add(lblTalde);
+		
+		lblTalde_1 = new JLabel("Talde 10");
+		lblTalde_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_1.setBounds(93, 262, 64, 32);
+		Partidak.add(lblTalde_1);
+		
+		textField_38 = new JTextField();
+		textField_38.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_38.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_38.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_38.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_38.setColumns(10);
+		textField_38.setBounds(18, 291, 47, 20);
+		Partidak.add(textField_38);
+		
+		textField_39 = new JTextField();
+		textField_39.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_1.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_39.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_39.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_39.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_39.setColumns(10);
+		textField_39.setBounds(90, 291, 47, 20);
+		Partidak.add(textField_39);
+		
+		textField_40 = new JTextField();
+		textField_40.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargar_sailkpena();
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_2.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_40.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_40.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_40.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_40.setColumns(10);
+		textField_40.setBounds(174, 291, 47, 20);
+		Partidak.add(textField_40);
+		
+		lblTalde_2 = new JLabel("Talde 11");
+		lblTalde_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_2.setBounds(175, 262, 64, 32);
+		Partidak.add(lblTalde_2);
+		
+		lblTalde_3 = new JLabel("Talde 12");
+		lblTalde_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_3.setBounds(234, 262, 60, 32);
+		Partidak.add(lblTalde_3);
+		
+		textField_41 = new JTextField();
+		textField_41.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_3.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_41.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_41.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_41.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_41.setColumns(10);
+		textField_41.setBounds(234, 291, 47, 20);
+		Partidak.add(textField_41);
+		
+		lblTalde_7 = new JLabel("Talde 16");
+		lblTalde_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_7.setBounds(240, 337, 54, 32);
+		Partidak.add(lblTalde_7);
+		
+		textField_42 = new JTextField();
+		textField_42.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_7.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_42.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_42.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_42.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_42.setColumns(10);
+		textField_42.setBounds(234, 366, 47, 20);
+		Partidak.add(textField_42);
+		
+		textField_43 = new JTextField();
+		textField_43.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_6.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_43.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_43.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_43.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_43.setColumns(10);
+		textField_43.setBounds(175, 366, 47, 20);
+		Partidak.add(textField_43);
+		
+		lblTalde_6 = new JLabel("Talde 15");
+		lblTalde_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_6.setBounds(175, 337, 64, 32);
+		Partidak.add(lblTalde_6);
+		
+		lblTalde_5 = new JLabel("Talde 14");
+		lblTalde_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_5.setBounds(93, 337, 64, 32);
+		Partidak.add(lblTalde_5);
+		
+		textField_44 = new JTextField();
+		textField_44.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_5.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_44.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_44.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_44.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_44.setColumns(10);
+		textField_44.setBounds(90, 366, 47, 20);
+		Partidak.add(textField_44);
+		
+		textField_45 = new JTextField();
+		textField_45.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_4.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_45.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_45.getText()));
+							sailkape_ordena();
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_45.getText()));
+							sailkape_ordena();
+						}
+					}
+				}
+			}
+		});
+		textField_45.setColumns(10);
+		textField_45.setBounds(18, 366, 47, 20);
+		Partidak.add(textField_45);
+		
+		lblTalde_4 = new JLabel("Talde 13");
+		lblTalde_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_4.setBounds(18, 337, 64, 32);
+		Partidak.add(lblTalde_4);
+		
+		lblTalde_8 = new JLabel("Talde 17");
+		lblTalde_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_8.setBounds(18, 412, 64, 32);
+		Partidak.add(lblTalde_8);
+		
+		lblTalde_9 = new JLabel("Talde 18");
+		lblTalde_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_9.setBounds(93, 412, 64, 32);
+		Partidak.add(lblTalde_9);
+		
+		lblTalde_10 = new JLabel("Talde 19");
+		lblTalde_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_10.setBounds(175, 412, 64, 32);
+		Partidak.add(lblTalde_10);
+		
+		lblTalde_11 = new JLabel("Talde 20");
+		lblTalde_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTalde_11.setBounds(240, 412, 54, 32);
+		Partidak.add(lblTalde_11);
+		
+		textField_46 = new JTextField();
+		textField_46.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_11.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_46.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_46.getText()));
+							System.out.println(Sailkape.get(f).getPuntuak());
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_46.getText()));
+						}
+					}
+				}
+			}
+		});
+		textField_46.setColumns(10);
+		textField_46.setBounds(234, 441, 47, 20);
+		Partidak.add(textField_46);
+		
+		textField_47 = new JTextField();
+		textField_47.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_10.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_47.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_47.getText()));
+							System.out.println(Sailkape.get(f).getPuntuak());
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_47.getText()));
+						}
+					}
+				}
+			}
+		});
+		textField_47.setColumns(10);
+		textField_47.setBounds(175, 441, 47, 20);
+		Partidak.add(textField_47);
+		
+		textField_48 = new JTextField();
+		textField_48.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_9.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde2())) {
+						J_Partidak[K][i].setTaldedos(Integer.valueOf(textField_48.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_48.getText()));
+							System.out.println(Sailkape.get(f).getPuntuak());
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_48.getText()));
+						}
+					}
+				}
+			}
+		});
+		textField_48.setColumns(10);
+		textField_48.setBounds(90, 441, 47, 20);
+		Partidak.add(textField_48);
+		
+		textField_49 = new JTextField();
+		textField_49.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int la = comboBox.getSelectedIndex();
+				valorcomboPartidas = Integer.valueOf(la);
+				int K = valorcomboPartidas;
+				String Labelarentzako;
+				Labelarentzako=lblTalde_8.getText();
+				for (i=0;J_Partidak.length>i;i++) {
+					if(Labelarentzako.equals(J_Partidak[K][i].getTalde1())) {
+						J_Partidak[K][i].setTaldeuno(Integer.valueOf(textField_49.getText()));
+						break;
+					}
+				}
+				for (int f=0; Sailkape.size()>f;f++) {
+					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
+						if(Sailkape.get(f).getPuntuak()==0) {
+							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_49.getText()));
+							System.out.println(Sailkape.get(f).getPuntuak());
+							break;
+						}
+						else {
+							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_49.getText()));
+						}
+					}
+				}
+			}
+		});
+		textField_49.setColumns(10);
+		textField_49.setBounds(18, 441, 47, 20);
+		Partidak.add(textField_49);
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setForeground(Color.BLACK);
+		separator.setBackground(Color.BLACK);
+		separator.setBounds(155, 128, 2, 352);
+		Partidak.add(separator);
+		
+		lblNewLabel_1 = new JLabel("Jornaldiak");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblNewLabel_1.setBackground(new Color(102, 153, 255));
+		lblNewLabel_1.setBounds(59, 74, 117, 32);
+		Partidak.add(lblNewLabel_1);
 		
 		Admin_1 = new JPanel();
 		Admin_1.setBackground(new Color(102, 153, 255));
@@ -351,6 +1572,10 @@ public class Programa_Main extends JFrame implements ActionListener {
 		btnLiga.setBounds(44, 347, 213, 66);
 		Admin_1.add(btnLiga);
 		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(25, 443, 232, 46);
+		Admin_1.add(lblNewLabel);
+		
 		Taldeak.setBackground(new Color(102, 153, 255));
 		Taldeak.setBounds(0, 0, 304, 501);
 		contentPane.add(Taldeak);
@@ -358,6 +1583,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Taldeak.setLayout(null);
 		
 		Taldeak_Atras = new JButton("");
+		Taldeak_Atras.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
 		Taldeak_Atras.addActionListener(this);
 		Taldeak_Atras.setForeground(new Color(102, 153, 255));
 		Taldeak_Atras.setBackground(new Color(102, 153, 255));
@@ -365,6 +1591,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Taldeak.add(Taldeak_Atras);
 		
 		Taldeak_Adelante = new JButton("");
+		Taldeak_Adelante.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama Verde.png"));
 		Taldeak_Adelante.addActionListener(this);
 		Taldeak_Adelante.setForeground(new Color(102, 153, 255));
 		Taldeak_Adelante.setBackground(new Color(102, 153, 255));
@@ -566,14 +1793,14 @@ public class Programa_Main extends JFrame implements ActionListener {
 		
 		button = new JButton("");
 		button.addActionListener(this);
-		button.setIcon(new ImageIcon("H:\\euskad cami.png"));
+		button.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\euskad cami.png"));
 		button.setBackground(new Color(102, 153, 255));
 		button.setBounds(177, 261, 91, 115);
 		Igresar_usuario.add(button);
 		
 		button_1 = new JButton("");
 		button_1.addActionListener(this);
-		button_1.setIcon(new ImageIcon("H:\\spa.png"));
+		button_1.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\spa.png"));
 		button_1.setMinimumSize(new Dimension(30, 70));
 		button_1.setMaximumSize(new Dimension(30, 70));
 		button_1.setBackground(new Color(102, 153, 255));
@@ -738,6 +1965,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Taldeak_jokalariak.add(btnJokalari_14);
 		
 		btnNewButton_1 = new JButton("");
+		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
 		btnNewButton_1.addActionListener(this);
 		btnNewButton_1.setBounds(6, 106, 89, 23);
 		Taldeak_jokalariak.add(btnNewButton_1);
@@ -833,388 +2061,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		button_42.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
 		button_42.setBounds(95, 428, 117, 50);
 		Mod_Taldea_1.add(button_42);
-
-		Selekzio_Administrador = new JPanel();
-		Selekzio_Administrador.setBackground(new Color(102, 153, 255));
-		Selekzio_Administrador.setBounds(0, 0, 304, 501);
-		contentPane.add(Selekzio_Administrador);
-		Selekzio_Administrador.setVisible(false);
-		Selekzio_Administrador.setLayout(null);
-
-		label_46 = new JLabel("Administrazioa");
-		label_46.setForeground(Color.WHITE);
-		label_46.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 31));
-		label_46.setBounds(68, 38, 222, 43);
-		Selekzio_Administrador.add(label_46);
-
-		btnSortu = new JButton("Sortu");
-		btnSortu.addActionListener(this);
-		btnSortu.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
-		btnSortu.setBackground(Color.WHITE);
-		btnSortu.setBounds(59, 142, 194, 62);
-		Selekzio_Administrador.add(btnSortu);
-
-		btnAldatu = new JButton("Aldatu");
-		btnAldatu.addActionListener(this);
-		btnAldatu.setEnabled(false);
-		btnAldatu.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
-		btnAldatu.setBackground(Color.WHITE);
-		btnAldatu.setBounds(59, 241, 194, 57);
-		Selekzio_Administrador.add(btnAldatu);
-
-		Admin_Atras = new JButton("");
-		Admin_Atras.addActionListener(this);
-		Admin_Atras.setForeground(new Color(255, 51, 0));
-		Admin_Atras.setBackground(new Color(255, 51, 51));
-		Admin_Atras.setBounds(10, 37, 53, 44);
-		Selekzio_Administrador.add(Admin_Atras);
-
-		Admin_Adelante = new JButton("");
-		Admin_Adelante.addActionListener(this);
-		Admin_Adelante.setForeground(new Color(204, 255, 51));
-		Admin_Adelante.setBackground(new Color(153, 255, 51));
-		Admin_Adelante.setBounds(250, 37, 53, 44);
-		Selekzio_Administrador.add(Admin_Adelante);
-
-		btnBorratu = new JButton("Borratu");
-		btnBorratu.addActionListener(this);
-		btnBorratu.setEnabled(false);
-		btnBorratu.setFont(new Font("Tw Cen MT", Font.PLAIN, 35));
-		btnBorratu.setBackground(Color.WHITE);
-		btnBorratu.setBounds(59, 338, 194, 57);
-		Selekzio_Administrador.add(btnBorratu);
-		
-		Partidak = new JPanel();
-		Partidak.setBackground(new Color(102, 153, 255));
-		Partidak.setBounds(0, 0, 304, 501);
-		contentPane.add(Partidak);
-		Partidak.setVisible(false);
-		Partidak.setLayout(null);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Verdana", Font.BOLD, 13));
-		comboBox.setBounds(83, 84, 125, 20);
-		Partidak.add(comboBox);
-		
-		Partidak_Adelante = new JButton("");
-		Partidak_Adelante.addActionListener(this);
-		Partidak_Adelante.setBackground(new Color(102, 153, 255));
-		Partidak_Adelante.setBounds(228, 20, 53, 44);
-		Partidak.add(Partidak_Adelante);
-		
-		label_4 = new JLabel("Partidak");
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label_4.setBounds(94, 20, 112, 44);
-		Partidak.add(label_4);
-		
-		Partidak_Atras = new JButton("");
-		Partidak_Atras.addActionListener(this);
-		Partidak_Atras.setBackground(new Color(102, 153, 255));
-		Partidak_Atras.setBounds(18, 20, 53, 44);
-		Partidak.add(Partidak_Atras);
-		
-		JLabel label_5 = new JLabel("Talde 1");
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_5.setBounds(18, 115, 53, 32);
-		Partidak.add(label_5);
-		
-
-		JLabel label_6 = new JLabel("Talde 2");
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_6.setBounds(93, 115, 64, 32);
-		Partidak.add(label_6);
-		
-		JLabel label_7 = new JLabel("Talde 3");
-		label_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_7.setBounds(175, 115, 64, 32);
-		Partidak.add(label_7);
-		
-		JLabel label_8 = new JLabel("Talde 4");
-		label_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_8.setBounds(234, 115, 47, 32);
-		Partidak.add(label_8);
-		
-		JLabel label_9 = new JLabel("Talde 5");
-		label_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_9.setBounds(18, 191, 64, 32);
-		Partidak.add(label_9);
-		
-		JLabel label_10 = new JLabel("Talde 6");
-		label_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_10.setBounds(93, 191, 64, 32);
-		Partidak.add(label_10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(18, 144, 47, 20);
-		Partidak.add(textField_1);
-		
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(90, 144, 47, 20);
-		Partidak.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(174, 144, 47, 20);
-		Partidak.add(textField_3);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(234, 144, 47, 20);
-		Partidak.add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(18, 220, 47, 20);
-		Partidak.add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(90, 220, 47, 20);
-		Partidak.add(textField_6);
-		
-		JLabel label_11 = new JLabel("Talde 8");
-		label_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_11.setBounds(240, 191, 54, 32);
-		Partidak.add(label_11);
-		
-		JLabel label_12 = new JLabel("Talde 7");
-		label_12.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_12.setBounds(175, 191, 64, 32);
-		Partidak.add(label_12);
-		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(175, 220, 47, 20);
-		Partidak.add(textField_7);
-		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(234, 220, 47, 20);
-		Partidak.add(textField_8);
-		
-		JLabel lblTalde = new JLabel("Talde 9");
-		lblTalde.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde.setBounds(18, 262, 53, 32);
-		Partidak.add(lblTalde);
-		
-		JLabel lblTalde_1 = new JLabel("Talde 10");
-		lblTalde_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_1.setBounds(93, 262, 64, 32);
-		Partidak.add(lblTalde_1);
-		
-		textField_38 = new JTextField();
-		textField_38.setColumns(10);
-		textField_38.setBounds(18, 291, 47, 20);
-		Partidak.add(textField_38);
-		
-		textField_39 = new JTextField();
-		textField_39.setColumns(10);
-		textField_39.setBounds(90, 291, 47, 20);
-		Partidak.add(textField_39);
-		
-		textField_40 = new JTextField();
-		textField_40.setColumns(10);
-		textField_40.setBounds(174, 291, 47, 20);
-		Partidak.add(textField_40);
-		
-		JLabel lblTalde_2 = new JLabel("Talde 11");
-		lblTalde_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_2.setBounds(175, 262, 64, 32);
-		Partidak.add(lblTalde_2);
-		
-		JLabel lblTalde_3 = new JLabel("Talde 12");
-		lblTalde_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_3.setBounds(234, 262, 60, 32);
-		Partidak.add(lblTalde_3);
-		
-		textField_41 = new JTextField();
-		textField_41.setColumns(10);
-		textField_41.setBounds(234, 291, 47, 20);
-		Partidak.add(textField_41);
-		
-		JLabel lblTalde_7 = new JLabel("Talde 16");
-		lblTalde_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_7.setBounds(240, 337, 54, 32);
-		Partidak.add(lblTalde_7);
-		
-		textField_42 = new JTextField();
-		textField_42.setColumns(10);
-		textField_42.setBounds(234, 366, 47, 20);
-		Partidak.add(textField_42);
-		
-		textField_43 = new JTextField();
-		textField_43.setColumns(10);
-		textField_43.setBounds(175, 366, 47, 20);
-		Partidak.add(textField_43);
-		
-		JLabel lblTalde_6 = new JLabel("Talde 15");
-		lblTalde_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_6.setBounds(175, 337, 64, 32);
-		Partidak.add(lblTalde_6);
-		
-		JLabel lblTalde_5 = new JLabel("Talde 14");
-		lblTalde_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_5.setBounds(93, 337, 64, 32);
-		Partidak.add(lblTalde_5);
-		
-		textField_44 = new JTextField();
-		textField_44.setColumns(10);
-		textField_44.setBounds(90, 366, 47, 20);
-		Partidak.add(textField_44);
-		
-		textField_45 = new JTextField();
-		textField_45.setColumns(10);
-		textField_45.setBounds(18, 366, 47, 20);
-		Partidak.add(textField_45);
-		
-		JLabel lblTalde_4 = new JLabel("Talde 13");
-		lblTalde_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_4.setBounds(18, 337, 64, 32);
-		Partidak.add(lblTalde_4);
-		
-		JLabel lblTalde_8 = new JLabel("Talde 17");
-		lblTalde_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_8.setBounds(18, 412, 64, 32);
-		Partidak.add(lblTalde_8);
-		
-		JLabel lblTalde_9 = new JLabel("Talde 18");
-		lblTalde_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_9.setBounds(93, 412, 64, 32);
-		Partidak.add(lblTalde_9);
-		
-		JLabel lblTalde_10 = new JLabel("Talde 19");
-		lblTalde_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_10.setBounds(175, 412, 64, 32);
-		Partidak.add(lblTalde_10);
-		
-		JLabel lblTalde_11 = new JLabel("Talde 20");
-		lblTalde_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTalde_11.setBounds(240, 412, 54, 32);
-		Partidak.add(lblTalde_11);
-		
-		textField_46 = new JTextField();
-		textField_46.setColumns(10);
-		textField_46.setBounds(234, 441, 47, 20);
-		Partidak.add(textField_46);
-		
-		textField_47 = new JTextField();
-		textField_47.setColumns(10);
-		textField_47.setBounds(175, 441, 47, 20);
-		Partidak.add(textField_47);
-		
-		textField_48 = new JTextField();
-		textField_48.setColumns(10);
-		textField_48.setBounds(90, 441, 47, 20);
-		Partidak.add(textField_48);
-		
-		textField_49 = new JTextField();
-		textField_49.setColumns(10);
-		textField_49.setBounds(18, 441, 47, 20);
-		Partidak.add(textField_49);
-		
-		JSeparator separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setForeground(Color.BLACK);
-		separator.setBackground(Color.BLACK);
-		separator.setBounds(155, 128, 2, 352);
-		Partidak.add(separator);
-
-		Sailkapena = new JPanel();
-		Sailkapena.setBackground(new Color(102, 153, 255));
-		Sailkapena.setBounds(0, 0, 304, 501);
-		contentPane.add(Sailkapena);
-		Sailkapena.setVisible(false);
-		Sailkapena.setLayout(null);
-
-		label_13 = new JLabel("Sailkapena");
-		label_13.setForeground(Color.WHITE);
-		label_13.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 39));
-		label_13.setBounds(54, 44, 196, 43);
-		Sailkapena.add(label_13);
-
-		label_14 = new JLabel("1. Talde 1");
-		label_14.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_14.setBounds(10, 170, 84, 20);
-		Sailkapena.add(label_14);
-
-		label_15 = new JLabel("2. Talde 2");
-		label_15.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_15.setBounds(10, 201, 84, 20);
-		Sailkapena.add(label_15);
-
-		label_16 = new JLabel("3. Talde 5");
-		label_16.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_16.setBounds(10, 232, 84, 20);
-		Sailkapena.add(label_16);
-
-		label_17 = new JLabel("4. Talde 3");
-		label_17.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_17.setBounds(10, 263, 84, 20);
-		Sailkapena.add(label_17);
-
-		label_18 = new JLabel("5. Talde 9");
-		label_18.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_18.setBounds(10, 294, 84, 20);
-		Sailkapena.add(label_18);
-
-		label_19 = new JLabel("6. Talde 4");
-		label_19.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_19.setBounds(10, 325, 84, 20);
-		Sailkapena.add(label_19);
-
-		label_20 = new JLabel("7. Talde 6");
-		label_20.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_20.setBounds(10, 356, 84, 20);
-		Sailkapena.add(label_20);
-
-		label_21 = new JLabel("8. Talde 8");
-		label_21.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_21.setBounds(10, 387, 84, 20);
-		Sailkapena.add(label_21);
-
-		label_22 = new JLabel("9. Talde 7");
-		label_22.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_22.setBounds(10, 416, 84, 20);
-		Sailkapena.add(label_22);
-
-		label_23 = new JLabel("10. Talde 10");
-		label_23.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
-		label_23.setBounds(10, 447, 98, 20);
-		Sailkapena.add(label_23);
-
-		label_24 = new JLabel("Partidak");
-		label_24.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label_24.setBounds(153, 143, 69, 20);
-		Sailkapena.add(label_24);
-
-		label_25 = new JLabel("Puntuak");
-		label_25.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label_25.setBounds(232, 146, 57, 14);
-		Sailkapena.add(label_25);
-
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setOrientation(SwingConstants.VERTICAL);
-		separator_3.setForeground(Color.BLACK);
-		separator_3.setBackground(Color.BLACK);
-		separator_3.setBounds(218, 143, 2, 336);
-		Sailkapena.add(separator_3);
-
-		Sailkapena_Atras = new JButton("");
-		Sailkapena_Atras.addActionListener(this);
-		Sailkapena_Atras.setForeground(new Color(102, 153, 255));
-		Sailkapena_Atras.setBackground(new Color(102, 153, 255));
-		Sailkapena_Atras.setBounds(0, 43, 53, 44);
-		Sailkapena.add(Sailkapena_Atras);
-
-		Sailkapena_Adelante = new JButton("");
-		Sailkapena_Adelante.addActionListener(this);
-		Sailkapena_Adelante.setForeground(new Color(102, 153, 255));
-		Sailkapena_Adelante.setBackground(new Color(102, 153, 255));
-		Sailkapena_Adelante.setBounds(251, 44, 53, 44);
-		Sailkapena.add(Sailkapena_Adelante);
 		contentPane.add(Borratu_Taldeak);
 
 		textField_34 = new JTextField();
@@ -1672,8 +2518,9 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Jokalari_Informazioa.add(label_29);
 
 		Jokalari_Informazio_Atras = new JButton("Atras");
+		Jokalari_Informazio_Atras.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
 		Jokalari_Informazio_Atras.addActionListener(this);
-		Jokalari_Informazio_Atras.setBounds(56, 30, 196, 69);
+		Jokalari_Informazio_Atras.setBounds(55, 30, 197, 72);
 		Jokalari_Informazioa.add(Jokalari_Informazio_Atras);
 	}
 
@@ -1718,19 +2565,9 @@ public class Programa_Main extends JFrame implements ActionListener {
 			Taldeak.setVisible(true);
 		}
 		if (Botones == button_1) {
-			button_1.setBackground(new Color(208, 208, 208));
-			button.setBackground(new Color(102, 153, 255));
-			Idioma = "Castellano";
-			label.setText("USUARIO");
-			label_1.setText("CONTRASEÑA");
-			button_2.setText("Entrar");
+			Gaztelaniaz();
 		} else if (Botones == button) {
-			button.setBackground(new Color(208, 208, 208));
-			button_1.setBackground(new Color(102, 153, 255));
-			Idioma = "Euskera";
-			label.setText("ERABILTZAILEA");
-			label_1.setText("PASAHITZA");
-			button_2.setText("Sartu");
+			Euskera();
 		} else if (Botones == button_2) {
 			usuarioycontrseña();
 		} else if (Botones == Partidak_Atras) {
@@ -1827,6 +2664,19 @@ public class Programa_Main extends JFrame implements ActionListener {
 		if (Botones == button_47) {
 			Borratu_Jokalari();
  		}
+		if(btnLiga==Botones) {
+			if (Taldea.size()==20) {
+				sortu_Partidak();
+				Admin_1.setVisible(false);
+				Taldeak.setVisible(true);
+			}
+			else {
+			lblNewLabel.setText("Crea todos los equipos");
+			}
+		}
+		if (btnBukatuLiga == Botones) {
+			Ligabukatu();
+			}
 
 	}
 
@@ -2883,13 +3733,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 				break;
 			}
 		}
-		
-		for  (clases.copy.Taldeak t : Taldea) {
-			System.out.println(t.getIzena());
-			for (Jokalariak j : t.getJokalaria()) {
-				System.out.println(j.getIzena());
-			}
-		}
 		Sortu_jokalari.setVisible(false);
 		Selekzio_Administrador.setVisible(true);
 	}
@@ -3185,7 +4028,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 				{0,15,18,3,16,19,5,1,11,17,12,6,10,9,8,13,4,14,2,7}};
 		
 		
-		clases.copy.Partidak J_Partidak[][]=new clases.copy.Partidak[38][10];
+		
 		for (int i=0;i<19;i++) {
 			for (int j=0;j<10;j++) {
 				clases.copy.Partidak P1 =new clases.copy.Partidak("partida",Taldea.get(J_0[i][2*j]).getIzena(), Taldea.get(J_0[i][2*j+1]).getIzena(), null,0,0);
@@ -3193,7 +4036,215 @@ public class Programa_Main extends JFrame implements ActionListener {
 				
 				clases.copy.Partidak P2 =new clases.copy.Partidak("Partida",Taldea.get(J_0[i][2*j+1]).getIzena(), Taldea.get(J_0[i][2*j]).getIzena(), null,0,0);
 				J_Partidak [i+19][j]=P1;
+				System.out.println(J_Partidak[i][j].getTalde1() + J_Partidak[i][j].getTalde2());
+				
 			}
 		}
+		btnSortu.setEnabled(false);
+		btnAldatu.setEnabled(false);
+		btnBorratu.setEnabled(false);; 
+	}
+	public void Partidak_erakutsi() {
+		int la = comboBox.getSelectedIndex();
+		valorcomboPartidas = Integer.valueOf(la);
+		int K = valorcomboPartidas;
+		
+				label_5.setText(J_Partidak[K][0].getTalde1());
+				textField_1.setText(Integer.toString(J_Partidak[K][0].getTaldeuno()));
+				label_6.setText(J_Partidak[K][0].getTalde2());
+				textField_2.setText(Integer.toString(J_Partidak[K][0].getTaldedos()));
+				label_7.setText(J_Partidak[K][1].getTalde1());
+				textField_3.setText(Integer.toString(J_Partidak[K][1].getTaldeuno()));
+				label_8.setText(J_Partidak[K][1].getTalde2());
+				textField_4.setText(Integer.toString(J_Partidak[K][1].getTaldedos()));
+				label_9.setText(J_Partidak[K][2].getTalde1());
+				textField_5.setText(Integer.toString(J_Partidak[K][2].getTaldeuno()));
+				label_10.setText(J_Partidak[K][2].getTalde2());
+				textField_6.setText(Integer.toString(J_Partidak[K][2].getTaldedos()));
+				label_12.setText(J_Partidak[K][3].getTalde1());
+				textField_7.setText(Integer.toString(J_Partidak[K][3].getTaldeuno()));
+				label_11.setText(J_Partidak[K][3].getTalde2());
+				textField_8.setText(Integer.toString(J_Partidak[K][3].getTaldedos()));
+				lblTalde.setText(J_Partidak[K][4].getTalde1());
+				textField_38.setText(Integer.toString(J_Partidak[K][4].getTaldeuno()));
+				lblTalde_1.setText(J_Partidak[K][4].getTalde2());
+				textField_39.setText(Integer.toString(J_Partidak[K][4].getTaldedos()));
+				lblTalde_2.setText(J_Partidak[K][5].getTalde1());
+				textField_40.setText(Integer.toString(J_Partidak[K][5].getTaldeuno()));
+				lblTalde_3.setText(J_Partidak[K][5].getTalde2());
+				textField_41.setText(Integer.toString(J_Partidak[K][5].getTaldedos()));
+				lblTalde_4.setText(J_Partidak[K][6].getTalde1());
+				textField_45.setText(Integer.toString(J_Partidak[K][6].getTaldeuno()));
+				lblTalde_5.setText(J_Partidak[K][6].getTalde2());
+				textField_44.setText(Integer.toString(J_Partidak[K][6].getTaldedos()));
+				lblTalde_6.setText(J_Partidak[K][7].getTalde1());
+				textField_43.setText(Integer.toString(J_Partidak[K][7].getTaldeuno()));
+				lblTalde_7.setText(J_Partidak[K][7].getTalde2());
+				textField_42.setText(Integer.toString(J_Partidak[K][7].getTaldedos()));
+				lblTalde_8.setText(J_Partidak[K][8].getTalde1());
+				textField_49.setText(Integer.toString(J_Partidak[K][8].getTaldeuno()));
+				lblTalde_9.setText(J_Partidak[K][8].getTalde2());
+				textField_48.setText(Integer.toString(J_Partidak[K][8].getTaldedos()));
+				lblTalde_10.setText(J_Partidak[K][9].getTalde1());
+				textField_47.setText(Integer.toString(J_Partidak[K][9].getTaldeuno()));
+				lblTalde_11.setText(J_Partidak[K][9].getTalde2());
+				textField_46.setText(Integer.toString(J_Partidak[K][9].getTaldedos()));	
+		}
+
+	public void cargar_sailkpena() {
+		Sailkape=(ArrayList<clases.copy.Taldeak>) Taldea.clone();
+	}
+	
+	public void establecer_sailkapena(){
+		Collections.sort(Sailkape);
+	}
+	public void Ligabukatu(){
+		ligaHasita=0;
+		btnSortu.setEnabled(true);
+		btnAldatu.setEnabled(true);
+		btnBorratu.setEnabled(true);
+	}
+	public void Gaztelaniaz() {
+		button_1.setBackground(new Color (208,208,208));
+		button.setBackground(new Color (102, 153, 255));
+		Idioma = "Castellano";
+		label.setText("USUARIO");
+		label_1.setText("CONTRASEÑA");			
+		button_2.setText("Entrar");
+		label_64.setText("Nombre");
+		label_65.setText("Cod.Equipo");
+		label_66.setText("Nombre");
+		label_67.setText("Pueblo");
+		label_68.setText("E-mail");
+		label_69.setText("Campo");
+		button_42.setText("Cambiar");
+		label_3.setText("Equipos");
+		label_46.setText("Administrador");
+		btnSortu.setText("Crear");
+		btnAldatu.setText("Cambiar");
+		btnBorratu.setText("Borrar");
+		label_4.setText("Partidos");
+		button_28.setText("Equipos");
+		btnErabiltzailea.setText("Usuario");
+		button_29.setText("Jugadores");
+		label_13.setText("Clasificación");
+		label_76.setText("Nombre");
+		button_45.setText("Buscar y borrar");
+		label_79.setText("Equipos");
+		label_80.setText("Nombre");
+		button_47.setText("Buscar y borrar");
+		label_70.setText("Equipo");
+		label_71.setText("Nombre");
+		label_72.setText("DNI Jugador");
+		label_73.setText("Nombre");
+		label_74.setText("Apellido");
+		label_75.setText("Equipo");
+		button_43.setText("Buscar");
+		button_44.setText("Cambiar");
+		label_56.setText("Nombre");
+		label_57.setText("Perfil");
+		label_58.setText("Usuario");
+		label_59.setText("Contraseña");
+		label_60.setText("Perfil");
+		label_52.setText("Ingresar nombre");
+		label_53.setText("Cod.jugador");
+		label_54.setText("Equipo");
+		label_55.setText("Ingrese apellido");
+		button_37.setText("Entrar");
+		label_47.setText("Nombre");
+		label_48.setText("Cod.Equipo");
+		label_49.setText("Pueblo");
+		label_50.setText("E-mail");
+		label_51.setText("Campo");
+		button_36.setText("Entrar");
+		label_61.setText("Contraseña del usuario");
+		label_62.setText("Nombre del usuario");
+		label_63.setText("Perfil");
+		button_40.setText("Entrar");
+		label_30.setText("Nombre del equipo");
+		label_31.setText("Jugadores");
+		label_42.setText("País");
+		label_43.setText("Campo");
+		label_44.setText("E-mail");
+		label_26.setText("Nombre");
+		label_27.setText("Apellido");
+		label_28.setText("Altura");
+		label_29.setText("Equipo");
+		btnNewButton.setText("Visitor");
+	}
+
+	public void Euskera() {
+		button.setBackground(new Color(208,208,208));
+		button_1.setBackground(new Color(102, 153, 255));
+		Idioma = "Euskera";
+		label.setText("ERABILTZAILEA");
+		label_1.setText("PASAHITZA");
+		button_2.setText("Sartu");
+		label_64.setText("Izena");
+		label_65.setText("Kod.Taldea");
+		label_66.setText("Izena");
+		label_67.setText("Udalerria");
+		label_68.setText("E-maila");
+		label_69.setText("Zelaia");
+		button_42.setText("Aldatu");
+		label_3.setText("Taldeak");
+		label_46.setText("Administradorea");
+		btnSortu.setText("Sortu");
+		btnAldatu.setText("Aldatu");
+		btnBorratu.setText("Borratu");
+		label_4.setText("Partidak");
+		button_28.setText("Taldeak");
+		button_29.setText("Jokalariak");
+		label_13.setText("Sailkapena");
+		btnErabiltzailea.setText("Erabiltzailea");
+		label_76.setText("Izena");
+		button_45.setText("Bilatu eta borratu");
+		label_79.setText("Taldeak");
+		label_80.setText("Izena");
+		button_47.setText("Bilatu eta borratu");
+		label_70.setText("Taldea");
+		label_71.setText("Izena");
+		label_72.setText("NAN Jokalaria");
+		label_73.setText("Izena");
+		label_74.setText("Abizena");
+		label_75.setText("Taldea");
+		button_43.setText("Bilatu");
+		button_44.setText("Aldatu");
+		label_56.setText("Izena");
+		label_57.setText("Profila");
+		label_58.setText("Erabiltzailea");
+		label_59.setText("Pasahitza");
+		label_60.setText("Profila");
+		label_52.setText("Sartu izena");
+		label_53.setText("Kod.jokalari");
+		label_54.setText("Taldea");
+		label_55.setText("Sartu abizena");
+		button_37.setText("Sartu");
+		label_47.setText("Izena");
+		label_48.setText("Kod.Taldea");
+		label_49.setText("Herria");
+		label_50.setText("E-maila");
+		label_51.setText("Zelaia");
+		button_36.setText("Sartu");
+		label_61.setText("Erabiltzailaren pasahitza");
+		label_62.setText("Erabiltzilearen izena");
+		label_63.setText("Profila");
+		button_40.setText("Sartu");
+		label_30.setText("Taldearen izena");
+		label_31.setText("Jokalariak");
+		label_42.setText("Herrialdea");
+		label_43.setText("Zelaia");
+		label_44.setText("E-maila");
+		label_26.setText("Izena");
+		label_27.setText("Abizena");
+		label_28.setText("Altuera");
+		label_29.setText("Taldea");
+	}
+	public void sailkape_ordena() {
+		establecer_sailkapena();
+		label_14.setText(Sailkape.get(0).getIzena());
+		label_24.setText(Integer.toString(Sailkape.get(0).getPuntuak()));
+		label_15.setText(Sailkape.get(1).getIzena());
+		label_32.setText(Integer.toString(Sailkape.get(1).getPuntuak()));
 	}
 }

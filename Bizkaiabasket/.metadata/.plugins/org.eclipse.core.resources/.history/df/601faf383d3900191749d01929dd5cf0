@@ -1,0 +1,17 @@
+package Pruebas;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
+public class Pruebas_usuario extends TestCase {
+
+	public static Test suite() {
+		TestSuite suite = new TestSuite(Pruebas_usuario.class.getName());
+		//$JUnit-BEGIN$
+
+		//$JUnit-END$
+		return suite;
+	}
+
+}

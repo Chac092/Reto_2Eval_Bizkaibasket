@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import Main.Programa_Main;
 
 
-public class Taldeak {
+public class Taldeak implements Comparable <Taldeak> {
 	//Atributoak deklaratu
 	 private String Kod_taldea;
 	 private String Izena; 
 	 private String Udalerri;
 	 private String posta;
 	 private String Zelaia;
+	 private Integer puntuak = 0;
 	 private boolean jokatu = false;
 	 private  ArrayList <Jokalariak> jokalaria = new ArrayList <Jokalariak>();
 	 
@@ -105,6 +106,26 @@ public class Taldeak {
 
 		public void setJokalaria(ArrayList <Jokalariak> jokalaria) {
 			jokalaria = jokalaria;
+		}
+
+		public int getPuntuak() {
+			return puntuak;
+		}
+
+		public void setPuntuak(int puntuak) {
+			this.puntuak = puntuak;
+		}
+		
+		@Override
+		public int compareTo(Taldeak o) {
+			// TODO Auto-generated method stub
+			this.puntuak.compareTo(o.puntuak);
+			if (this.puntuak > o.puntuak)
+				return 1;
+			else {
+				return 0;
+			}
+			
 		}
 
 		
