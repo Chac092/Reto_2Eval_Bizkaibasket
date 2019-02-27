@@ -121,9 +121,9 @@ public class Taldeak implements Comparable <Taldeak> {
 			// TODO Auto-generated method stub
 			this.puntuak.compareTo(o.puntuak);
 			if (this.puntuak > o.puntuak)
-				return 1;
+				return -1;
 			else {
-				return 0;
+				return 1;
 			}
 			
 		}

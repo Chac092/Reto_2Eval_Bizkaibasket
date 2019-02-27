@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="button_1" key="selection"/>
+		<item value="button_18" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="button_1"/>
-			<item value="button_!"/>
-			<item value="btnBukatuLiga"/>
-			<item value="hasi"/>
-			<item value="comboBox"/>
-			<item value="comboBox_1"/>
-			<item value="==1"/>
-			<item value="JLabel lblNewLabel"/>
-			<item value="scrol"/>
-			<item value="label_26"/>
-			<item value="posicion"/>
-			<item value="button_47"/>
-			<item value="button_44"/>
-			<item value="jokalari"/>
-			<item value="bilatu"/>
+			<item value="button_18"/>
+			<item value="taldeak"/>
+			<item value="textField_44"/>
+			<item value="textField_40"/>
+			<item value="textField_1"/>
+			<item value="textField1"/>
+			<item value="erabiltzaile"/>
+			<item value="btnNewButton"/>
+			<item value="profila"/>
+			<item value="establecer_sailkapena"/>
+			<item value="println"/>
+			<item value="btnSortuLiga"/>
+			<item value="btnLiga"/>
+			<item value="cargar_sailkpena()"/>
+			<item value="new "/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -31,7 +31,7 @@
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="263" key="DIALOG_X_ORIGIN"/>
-		<item value="345" key="DIALOG_Y_ORIGIN"/>
+		<item value="1032" key="DIALOG_X_ORIGIN"/>
+		<item value="179" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

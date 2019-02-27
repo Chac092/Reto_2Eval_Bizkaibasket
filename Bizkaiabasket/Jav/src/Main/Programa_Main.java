@@ -102,7 +102,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 	private JTextField textField_37;
 	private JTextField textField;
 	private JComboBox comboBox_4;
-	private JButton btnLiga;
+	private JButton btnSortuLiga;
 	/* Declararemos el passwordfield para controlar la contraseña */
 	private JPasswordField passwordField;
 	/* Declararemos todos los paneles */
@@ -368,6 +368,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Programa_Main() {
+		setTitle("BizkaiaBasket APP");
+		setBackground(Color.WHITE);
 
 		Erabiltzaile.add(Admin);
 
@@ -679,12 +681,14 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Selekzio_Administrador.add(btnAldatu);
 				
 		Admin_Atras = new JButton("");
+		Admin_Atras.setBackground(new Color(102, 153, 255));
 		Admin_Atras.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
 		Admin_Atras.addActionListener(this);
 		Admin_Atras.setBounds(10, 37, 53, 44);
 		Selekzio_Administrador.add(Admin_Atras);
 										
 		Admin_Adelante = new JButton("");
+		Admin_Adelante.setBackground(new Color(102, 153, 255));
 		Admin_Adelante.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama Verde.png"));
 		Admin_Adelante.addActionListener(this);
 		Admin_Adelante.setBounds(250, 37, 53, 44);
@@ -699,6 +703,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Selekzio_Administrador.add(btnBorratu);
 														
 		btnBukatuLiga = new JButton("Bukatu Liga");
+		btnBukatuLiga.setBackground(Color.WHITE);
 		btnBukatuLiga.addActionListener(this);
 		btnBukatuLiga.setBounds(178, 448, 89, 23);
 		Selekzio_Administrador.add(btnBukatuLiga);
@@ -711,6 +716,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Partidak.setLayout(null);
 		
 		comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setForeground(Color.BLACK);
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				System.out.println("me ejecuto");
@@ -738,6 +745,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Partidak.add(Partidak_Adelante);
 		
 		label_4 = new JLabel("Partidak");
+		label_4.setForeground(Color.WHITE);
+		label_4.setBackground(Color.WHITE);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		label_4.setBounds(94, 20, 112, 44);
 		Partidak.add(label_4);
@@ -784,7 +793,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_1 = new JTextField();
 		textField_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -804,15 +812,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							cargar_sailkpena();
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_1.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_1.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_1.setColumns(10);
@@ -823,7 +831,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_2 = new JTextField();
 		textField_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -839,15 +846,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_2.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_2.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_2.setColumns(10);
@@ -857,7 +864,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_3 = new JTextField();
 		textField_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -878,10 +884,11 @@ public class Programa_Main extends JFrame implements ActionListener {
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_3.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_3.setColumns(10);
@@ -891,7 +898,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_4 = new JTextField();
 		textField_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -907,15 +913,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_4.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_4.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_4.setColumns(10);
@@ -925,7 +931,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_5 = new JTextField();
 		textField_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -941,15 +946,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_5.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_5.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_5.setColumns(10);
@@ -959,7 +964,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_6 = new JTextField();
 		textField_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -975,15 +979,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_6.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_6.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_6.setColumns(10);
@@ -1003,7 +1007,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_7 = new JTextField();
 		textField_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -1019,15 +1022,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_7.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_7.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_7.setColumns(10);
@@ -1037,7 +1040,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_8 = new JTextField();
 		textField_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -1053,15 +1055,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_8.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_8.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_8.setColumns(10);
@@ -1081,7 +1083,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_38 = new JTextField();
 		textField_38.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -1097,15 +1098,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_38.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_38.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_38.setColumns(10);
@@ -1115,7 +1116,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_39 = new JTextField();
 		textField_39.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -1131,15 +1131,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_39.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_39.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_39.setColumns(10);
@@ -1149,7 +1149,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 		textField_40 = new JTextField();
 		textField_40.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargar_sailkpena();
 				int la = comboBox.getSelectedIndex();
 				valorcomboPartidas = Integer.valueOf(la);
 				int K = valorcomboPartidas;
@@ -1165,15 +1164,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_40.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_40.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_40.setColumns(10);
@@ -1279,15 +1278,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_43.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_43.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_43.setColumns(10);
@@ -1322,15 +1321,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_44.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_44.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_44.setColumns(10);
@@ -1355,15 +1354,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 					if(Labelarentzako.equals(Sailkape.get(f).getIzena())) {
 						if(Sailkape.get(f).getPuntuak()==0) {
 							Sailkape.get(f).setPuntuak(Integer.valueOf(textField_45.getText()));
-							sailkape_ordena();
 							break;
 						}
 						else {
 							Sailkape.get(f).setPuntuak(Sailkape.get(f).getPuntuak()+Integer.valueOf(textField_45.getText()));
-							sailkape_ordena();
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_45.setColumns(10);
@@ -1421,6 +1420,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_46.setColumns(10);
@@ -1453,6 +1454,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_47.setColumns(10);
@@ -1485,6 +1488,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_48.setColumns(10);
@@ -1517,6 +1522,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 						}
 					}
 				}
+				establecer_sailkapena();
+				sailkape_ordena();
 			}
 		});
 		textField_49.setColumns(10);
@@ -1531,8 +1538,9 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Partidak.add(separator);
 		
 		lblNewLabel_1 = new JLabel("Jornaldiak");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblNewLabel_1.setBackground(new Color(102, 153, 255));
+		lblNewLabel_1.setBackground(Color.WHITE);
 		lblNewLabel_1.setBounds(59, 74, 117, 32);
 		Partidak.add(lblNewLabel_1);
 		
@@ -1565,12 +1573,12 @@ public class Programa_Main extends JFrame implements ActionListener {
 		btnErabiltzailea.setBounds(44, 240, 213, 66);
 		Admin_1.add(btnErabiltzailea);
 		
-		btnLiga = new JButton("Liga");
-		btnLiga.addActionListener(this);
-		btnLiga.setFont(new Font("Dialog", Font.PLAIN, 35));
-		btnLiga.setBackground(Color.WHITE);
-		btnLiga.setBounds(44, 347, 213, 66);
-		Admin_1.add(btnLiga);
+		btnSortuLiga = new JButton("Liga");
+		btnSortuLiga.addActionListener(this);
+		btnSortuLiga.setFont(new Font("Dialog", Font.PLAIN, 35));
+		btnSortuLiga.setBackground(Color.WHITE);
+		btnSortuLiga.setBounds(44, 347, 213, 66);
+		Admin_1.add(btnSortuLiga);
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(25, 443, 232, 46);
@@ -1808,6 +1816,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Igresar_usuario.add(button_1);
 		
 		button_2 = new JButton("Sartu");
+		button_2.setBackground(Color.WHITE);
 		button_2.addActionListener(this);
 		button_2.setBounds(165, 441, 103, 38);
 		Igresar_usuario.add(button_2);
@@ -1822,6 +1831,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Igresar_usuario.add(label_2);
 		
 		btnNewButton = new JButton("Ikuslea Naiz");
+		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.addActionListener(this);
 		btnNewButton.setBounds(15, 441, 110, 38);
 		Igresar_usuario.add(btnNewButton);
@@ -1965,6 +1975,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Taldeak_jokalariak.add(btnJokalari_14);
 		
 		btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
 		btnNewButton_1.addActionListener(this);
 		btnNewButton_1.setBounds(6, 106, 89, 23);
@@ -2001,6 +2012,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Mod_Taldea_1.add(label_64);
 
 		button_41 = new JButton("Bilatu");
+		button_41.setBackground(Color.WHITE);
 		button_41.addActionListener(this);
 		button_41.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		button_41.setBounds(110, 120, 89, 23);
@@ -2057,6 +2069,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Mod_Taldea_1.add(textField_27);
 
 		button_42 = new JButton("Aldatu");
+		button_42.setBackground(Color.WHITE);
 		button_42.addActionListener(this);
 		button_42.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
 		button_42.setBounds(95, 428, 117, 50);
@@ -2075,6 +2088,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Borratu_Taldeak.add(label_76);
 
 		button_45 = new JButton("Bilatu eta borratu");
+		button_45.setBackground(Color.WHITE);
 		button_45.addActionListener(this);
 		button_45.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		button_45.setBounds(64, 254, 169, 23);
@@ -2104,6 +2118,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Borratu_Jokalariak.add(textField_37);
 
 		button_47 = new JButton("Bilatu eta borratu");
+		button_47.setBackground(Color.WHITE);
 		button_47.addActionListener(this);
 		button_47.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		button_47.setBounds(85, 276, 155, 23);
@@ -2134,13 +2149,15 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Borratu_Erabiltzailea.add(label_78);
 
 		comboBox_5 = new JComboBox();
+		comboBox_5.setForeground(Color.BLACK);
 		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Erabiltzaile"}));
 		comboBox_5.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
-		comboBox_5.setBackground(Color.BLACK);
+		comboBox_5.setBackground(Color.WHITE);
 		comboBox_5.setBounds(151, 231, 152, 34);
 		Borratu_Erabiltzailea.add(comboBox_5);
 
 		button_46 = new JButton("Bilatu eta borratu");
+		button_46.setBackground(Color.WHITE);
 		button_46.addActionListener(this);
 		button_46.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		button_46.setBounds(66, 287, 165, 23);
@@ -2176,6 +2193,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Mod_Jokalari.add(textField_29);
 
 		button_43 = new JButton("Bilatu");
+		button_43.setBackground(Color.WHITE);
 		button_43.addActionListener(this);
 		button_43.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		button_43.setBounds(109, 129, 89, 23);
@@ -2222,6 +2240,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Mod_Jokalari.add(textField_33);
 
 		button_44 = new JButton("Aldatu");
+		button_44.setBackground(Color.WHITE);
 		button_44.addActionListener(this);
 		button_44.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
 		button_44.setBounds(94, 418, 117, 50);
@@ -2259,6 +2278,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Mod_Erabiltzaile.add(comboBox_2);
 
 		button_38 = new JButton("Bilatu");
+		button_38.setBackground(Color.WHITE);
 		button_38.addActionListener(this);
 		button_38.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
 		button_38.setBounds(106, 129, 89, 23);
@@ -2292,11 +2312,12 @@ public class Programa_Main extends JFrame implements ActionListener {
 		comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Erabiltzaile"}));
 		comboBox_3.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
-		comboBox_3.setBackground(Color.BLACK);
+		comboBox_3.setBackground(Color.WHITE);
 		comboBox_3.setBounds(117, 315, 153, 23);
 		Mod_Erabiltzaile.add(comboBox_3);
 
 		button_39 = new JButton("Aldatu");
+		button_39.setBackground(Color.WHITE);
 		button_39.addActionListener(this);
 		button_39.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
 		button_39.setBounds(95, 401, 117, 50);
@@ -2322,6 +2343,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Sortu_jokalari.add(textField_14);
 
 		button_37 = new JButton("Sartu");
+		button_37.setBackground(Color.WHITE);
 		button_37.addActionListener(this);
 		button_37.setFont(new Font("Tw Cen MT", Font.PLAIN, 40));
 		button_37.setBounds(165, 425, 127, 61);
@@ -2340,6 +2362,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Sortu_jokalari.add(textField_15);
 
 		comboBox_1 = new JComboBox<String>();
+		comboBox_1.setBackground(Color.WHITE);
+		comboBox_1.setForeground(Color.BLACK);
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		comboBox_1.setBounds(20, 350, 179, 40);
 		Sortu_jokalari.add(comboBox_1);
@@ -2474,6 +2498,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Sortu_erabiltzaile.add(label_63);
 
 		comboBox_4 = new JComboBox();
+		comboBox_4.setBackground(Color.WHITE);
 		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Erabiltzaile"}));
 		comboBox_4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 24));
 		comboBox_4.setBounds(20, 290, 179, 40);
@@ -2518,6 +2543,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		Jokalari_Informazioa.add(label_29);
 
 		Jokalari_Informazio_Atras = new JButton("Atras");
+		Jokalari_Informazio_Atras.setBackground(Color.WHITE);
 		Jokalari_Informazio_Atras.setIcon(new ImageIcon("C:\\Users\\Davi\\Documents\\GitHub\\Reto_2Eval_Bizkaibasket\\Bizkaiabasket\\Llama roja.png"));
 		Jokalari_Informazio_Atras.addActionListener(this);
 		Jokalari_Informazio_Atras.setBounds(55, 30, 197, 72);
@@ -2563,6 +2589,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		if (Botones == btnNewButton) {
 			Igresar_usuario.setVisible(false);
 			Taldeak.setVisible(true);
+			profila = "Visitor";
 		}
 		if (Botones == button_1) {
 			Gaztelaniaz();
@@ -2583,10 +2610,98 @@ public class Programa_Main extends JFrame implements ActionListener {
 			} else {
 				Taldeak.setVisible(false);
 				Partidak.setVisible(true);
+				if(profila == "Visitor") {
+					textField_1.setEnabled(false);
+					textField_2.setEnabled(false);
+					textField_3.setEnabled(false);
+					textField_4.setEnabled(false);
+					textField_5.setEnabled(false);
+					textField_6.setEnabled(false);
+					textField_7.setEnabled(false);
+					textField_8.setEnabled(false);
+					textField_38.setEnabled(false);
+					textField_39.setEnabled(false);
+					textField_40.setEnabled(false);
+					textField_41.setEnabled(false);
+					textField_45.setEnabled(false);
+					textField_44.setEnabled(false);
+					textField_43.setEnabled(false);
+					textField_42.setEnabled(false);
+					textField_49.setEnabled(false);
+					textField_48.setEnabled(false);
+					textField_47.setEnabled(false);
+					textField_46.setEnabled(false);
+				}
+				else {
+					textField_1.setEnabled(true);
+					textField_2.setEnabled(true);
+					textField_3.setEnabled(true);
+					textField_4.setEnabled(true);
+					textField_5.setEnabled(true);
+					textField_6.setEnabled(true);
+					textField_7.setEnabled(true);
+					textField_8.setEnabled(true);
+					textField_38.setEnabled(true);
+					textField_39.setEnabled(true);
+					textField_40.setEnabled(true);
+					textField_41.setEnabled(true);
+					textField_45.setEnabled(true);
+					textField_44.setEnabled(true);
+					textField_43.setEnabled(true);
+					textField_42.setEnabled(true);
+					textField_49.setEnabled(true);
+					textField_48.setEnabled(true);
+					textField_47.setEnabled(true);
+					textField_46.setEnabled(true);
+				}
 			}
 		} else if (Botones == Admin_Atras) {
 			Selekzio_Administrador.setVisible(false);
 			Partidak.setVisible(true);
+			if(profila == "Visitor") {
+				textField_1.setEnabled(false);
+				textField_2.setEnabled(false);
+				textField_3.setEnabled(false);
+				textField_4.setEnabled(false);
+				textField_5.setEnabled(false);
+				textField_6.setEnabled(false);
+				textField_7.setEnabled(false);
+				textField_8.setEnabled(false);
+				textField_38.setEnabled(false);
+				textField_39.setEnabled(false);
+				textField_40.setEnabled(false);
+				textField_41.setEnabled(false);
+				textField_45.setEnabled(false);
+				textField_44.setEnabled(false);
+				textField_43.setEnabled(false);
+				textField_42.setEnabled(false);
+				textField_49.setEnabled(false);
+				textField_48.setEnabled(false);
+				textField_47.setEnabled(false);
+				textField_46.setEnabled(false);
+			}
+			else {
+				textField_1.setEnabled(true);
+				textField_2.setEnabled(true);
+				textField_3.setEnabled(true);
+				textField_4.setEnabled(true);
+				textField_5.setEnabled(true);
+				textField_6.setEnabled(true);
+				textField_7.setEnabled(true);
+				textField_8.setEnabled(true);
+				textField_38.setEnabled(true);
+				textField_39.setEnabled(true);
+				textField_40.setEnabled(true);
+				textField_41.setEnabled(true);
+				textField_45.setEnabled(true);
+				textField_44.setEnabled(true);
+				textField_43.setEnabled(true);
+				textField_42.setEnabled(true);
+				textField_49.setEnabled(true);
+				textField_48.setEnabled(true);
+				textField_47.setEnabled(true);
+				textField_46.setEnabled(true);
+			}
 		} else if (Botones == Jokalari_Informazio_Atras) {
 
 		} else if (Botones == Partidak_Adelante) {
@@ -2596,6 +2711,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 			} else {
 				Partidak.setVisible(false);
 				Taldeak.setVisible(true);
+				actualizar();
 			}
 		} else if (Botones == Taldeak_Adelante) {
 			Taldeak.setVisible(false);
@@ -2603,9 +2719,54 @@ public class Programa_Main extends JFrame implements ActionListener {
 		} else if (Botones == Sailkapena_Adelante) {
 			Sailkapena.setVisible(false);
 			Partidak.setVisible(true);
+			if(profila == "Visitor") {
+				textField_1.setEnabled(false);
+				textField_2.setEnabled(false);
+				textField_3.setEnabled(false);
+				textField_4.setEnabled(false);
+				textField_5.setEnabled(false);
+				textField_6.setEnabled(false);
+				textField_7.setEnabled(false);
+				textField_8.setEnabled(false);
+				textField_38.setEnabled(false);
+				textField_39.setEnabled(false);
+				textField_40.setEnabled(false);
+				textField_41.setEnabled(false);
+				textField_45.setEnabled(false);
+				textField_44.setEnabled(false);
+				textField_43.setEnabled(false);
+				textField_42.setEnabled(false);
+				textField_49.setEnabled(false);
+				textField_48.setEnabled(false);
+				textField_47.setEnabled(false);
+				textField_46.setEnabled(false);
+			}
+			else {
+				textField_1.setEnabled(true);
+				textField_2.setEnabled(true);
+				textField_3.setEnabled(true);
+				textField_4.setEnabled(true);
+				textField_5.setEnabled(true);
+				textField_6.setEnabled(true);
+				textField_7.setEnabled(true);
+				textField_8.setEnabled(true);
+				textField_38.setEnabled(true);
+				textField_39.setEnabled(true);
+				textField_40.setEnabled(true);
+				textField_41.setEnabled(true);
+				textField_45.setEnabled(true);
+				textField_44.setEnabled(true);
+				textField_43.setEnabled(true);
+				textField_42.setEnabled(true);
+				textField_49.setEnabled(true);
+				textField_48.setEnabled(true);
+				textField_47.setEnabled(true);
+				textField_46.setEnabled(true);
+			}
 		} else if (Botones == Admin_Adelante) {
 			Selekzio_Administrador.setVisible(false);
 			Taldeak.setVisible(true);
+			actualizar();
 		} else if (Botones == btnSortu) {
 			Opcion = "Sortu";
 			Selekzio_Administrador.setVisible(false);
@@ -2664,7 +2825,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 		if (Botones == button_47) {
 			Borratu_Jokalari();
  		}
-		if(btnLiga==Botones) {
+		if(btnSortuLiga==Botones) {
 			if (Taldea.size()==20) {
 				sortu_Partidak();
 				Admin_1.setVisible(false);
@@ -2770,6 +2931,47 @@ public class Programa_Main extends JFrame implements ActionListener {
 		int Espacio;
 		Espacio = Taldea.size();
 		switch (Espacio) {
+		case 0:
+			button_5.setEnabled(false);
+			button_5.setText("Talde1");
+			button_6.setEnabled(false);
+			button_6.setText("Talde2");
+			button_7.setEnabled(false);
+			button_7.setText("Talde3");
+			button_8.setEnabled(false);
+			button_8.setText("Talde4");
+			button_9.setEnabled(false);
+			button_9.setText("Talde5");
+			button_10.setEnabled(false);
+			button_10.setText("Talde6");
+			button_11.setEnabled(false);
+			button_11.setText("Talde7");
+			button_24.setEnabled(false);
+			button_24.setText("Talde8");
+			button_12.setEnabled(false);
+			button_12.setText("Talde9");
+			button_13.setEnabled(false);
+			button_13.setText("Talde10");
+			button_14.setEnabled(false);
+			button_14.setText("Talde11");
+			button_15.setEnabled(false);
+			button_15.setText("Talde12");
+			button_17.setEnabled(false);
+			button_17.setText("Talde13");
+			button_16.setEnabled(false);
+			button_16.setText("Talde14");
+			button_19.setEnabled(false);
+			button_19.setText("Talde15");
+			button_18.setEnabled(false);
+			button_18.setText("talde16");
+			button_21.setEnabled(false);
+			button_21.setText("Talde17");
+			button_20.setEnabled(false);
+			button_20.setText("Talde18");
+			button_22.setEnabled(false);
+			button_22.setText("Talde19");
+			button_23.setEnabled(false);
+			button_23.setText("Talde20");
 		case 1:
 			button_5.setText(Taldea.get(0).getIzena());
 			button_6.setEnabled(false);
@@ -3299,8 +3501,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 			button_16.setText(Taldea.get(13).getIzena());
 			button_19.setText(Taldea.get(14).getIzena());
 			button_18.setText(Taldea.get(15).getIzena());
-			button_18.setEnabled(false);
-			button_18.setText("talde16");
 			button_21.setEnabled(false);
 			button_21.setText("Talde17");
 			button_20.setEnabled(false);
@@ -3379,7 +3579,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 			button_21.setText(Taldea.get(16).getIzena());
 			button_20.setText(Taldea.get(17).getIzena());
 			button_22.setText(Taldea.get(18).getIzena());
-			button_23.setText(Taldea.get(19).getIzena());
 			button_23.setEnabled(false);
 			button_23.setText("Talde20");
 			break;
@@ -3404,7 +3603,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 			button_20.setText(Taldea.get(17).getIzena());
 			button_22.setText(Taldea.get(18).getIzena());
 			button_23.setText(Taldea.get(19).getIzena());
-			button_23.setText(Taldea.get(20).getIzena());
 			break;
 		}
 	}
@@ -3698,6 +3896,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 	}
 	
 	public void buscar_Jugadores() {
+		
+		
 		for (int j=0; j<Taldea.size();j++) {
 			if (Taldea.get(j).getIzena().equals(textField_28.getText())) {
 				for (int k=0; k<Taldea.get(j).getJokalaria().size();k++) {
@@ -3885,7 +4085,6 @@ public class Programa_Main extends JFrame implements ActionListener {
 				Taldea.remove(i);	
 			}
 		}
-		actualizar();
 		Borratu_Taldeak.setVisible(false);
 		Selekzio_Administrador.setVisible(true);
 	}
@@ -3941,6 +4140,7 @@ public class Programa_Main extends JFrame implements ActionListener {
 	public void Erabiltzailea_Modifikatu(){
 		String Combo = (String) comboBox_3.getSelectedItem();
 		Erabiltzaile.get(i).setUsuario(textField_18.getText());
+		System.out.println(textField_18.getText());
 		Erabiltzaile.get(i).setPass(textField_19.getText());
 		Erabiltzaile.get(i).setProfila(Combo);
 		Mod_Erabiltzaile.setVisible(false);
@@ -4042,7 +4242,8 @@ public class Programa_Main extends JFrame implements ActionListener {
 		}
 		btnSortu.setEnabled(false);
 		btnAldatu.setEnabled(false);
-		btnBorratu.setEnabled(false);; 
+		btnBorratu.setEnabled(false);
+		cargar_sailkpena();
 	}
 	public void Partidak_erakutsi() {
 		int la = comboBox.getSelectedIndex();
@@ -4098,12 +4299,14 @@ public class Programa_Main extends JFrame implements ActionListener {
 	public void establecer_sailkapena(){
 		Collections.sort(Sailkape);
 	}
+	
 	public void Ligabukatu(){
 		ligaHasita=0;
 		btnSortu.setEnabled(true);
 		btnAldatu.setEnabled(true);
 		btnBorratu.setEnabled(true);
 	}
+	
 	public void Gaztelaniaz() {
 		button_1.setBackground(new Color (208,208,208));
 		button.setBackground(new Color (102, 153, 255));
@@ -4246,5 +4449,41 @@ public class Programa_Main extends JFrame implements ActionListener {
 		label_24.setText(Integer.toString(Sailkape.get(0).getPuntuak()));
 		label_15.setText(Sailkape.get(1).getIzena());
 		label_32.setText(Integer.toString(Sailkape.get(1).getPuntuak()));
+		label_16.setText(Sailkape.get(2).getIzena());
+		label_33.setText(Integer.toString(Sailkape.get(2).getPuntuak()));
+		label_17.setText(Sailkape.get(3).getIzena());
+		label_34.setText(Integer.toString(Sailkape.get(3).getPuntuak()));
+		label_18.setText(Sailkape.get(4).getIzena());
+		label_35.setText(Integer.toString(Sailkape.get(4).getPuntuak()));
+		label_19.setText(Sailkape.get(5).getIzena());
+		label_36.setText(Integer.toString(Sailkape.get(5).getPuntuak()));
+		label_20.setText(Sailkape.get(6).getIzena());
+		label_37.setText(Integer.toString(Sailkape.get(6).getPuntuak()));
+		label_21.setText(Sailkape.get(7).getIzena());
+		label_38.setText(Integer.toString(Sailkape.get(7).getPuntuak()));
+		label_22.setText(Sailkape.get(8).getIzena());
+		label_39.setText(Integer.toString(Sailkape.get(8).getPuntuak()));
+		label_23.setText(Sailkape.get(9).getIzena());
+		label_40.setText(Integer.toString(Sailkape.get(9).getPuntuak()));
+		lblTalde_12.setText(Sailkape.get(10).getIzena());
+		label_25.setText(Integer.toString(Sailkape.get(10).getPuntuak()));
+		lblTalde_13.setText(Sailkape.get(11).getIzena());
+		label_41.setText(Integer.toString(Sailkape.get(11).getPuntuak()));
+		lblTalde_14.setText(Sailkape.get(12).getIzena());
+		label_45.setText(Integer.toString(Sailkape.get(12).getPuntuak()));
+		lblTalde_15.setText(Sailkape.get(13).getIzena());
+		label_81.setText(Integer.toString(Sailkape.get(13).getPuntuak()));
+		lblTalde_16.setText(Sailkape.get(14).getIzena());
+		label_82.setText(Integer.toString(Sailkape.get(14).getPuntuak()));
+		lblTalde_17.setText(Sailkape.get(15).getIzena());
+		label_83.setText(Integer.toString(Sailkape.get(15).getPuntuak()));
+		lblTalde_18.setText(Sailkape.get(16).getIzena());
+		label_84.setText(Integer.toString(Sailkape.get(16).getPuntuak()));
+		lblTalde_19.setText(Sailkape.get(17).getIzena());
+		label_85.setText(Integer.toString(Sailkape.get(17).getPuntuak()));
+		lblTalde_20.setText(Sailkape.get(18).getIzena());
+		label_86.setText(Integer.toString(Sailkape.get(18).getPuntuak()));
+		lblTalde_21.setText(Sailkape.get(19).getIzena());
+		label_87.setText(Integer.toString(Sailkape.get(19).getPuntuak()));
 	}
 }

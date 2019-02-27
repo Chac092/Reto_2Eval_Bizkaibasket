@@ -1,0 +1,23 @@
+package Pruebas;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import clases.copy.Erabiltzailea;
+
+class Pruebas {
+
+	@Test
+	void testusuario() {
+		Erabiltzailea E1 = new Erabiltzailea("Pepe", "Pass", "Admin");
+		Erabiltzailea E2 = new Erabiltzailea("Pepe","Pass","Admin");
+		Erabiltzailea E3 = new Erabiltzailea("Juanjo","Carrillo","Erabiltzaile");
+		assertTrue(E1.equals(E2));
+		assertFalse(E2.equals(E3));
+	
+	}
+
+}

@@ -1,0 +1,123 @@
+package Pruebas;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import clases.copy.Erabiltzailea;
+
+class Pruebas {
+
+	@Test
+	void testusuario() {
+		Erabiltzailea E1 = new Erabiltzailea("Pepe", "Pass", "Admin");
+		Erabiltzailea E2 = new Erabiltzailea("Pepe","Pass","Admin");
+		Erabiltzailea E3 = new Erabiltzailea("Juanjo","Carrillo","Erabiltzaile");
+		assertTrue(E1.equals(E2));
+		assertFalse(E2.equals(E3));
+	}
+	@Test
+	void meterUsuario(){
+		int usuario_dentro = 0; 
+		ArrayList<Erabiltzailea> Erabiltzaile = new ArrayList<Erabiltzailea>();
+		Erabiltzailea usua = new Erabiltzailea("pepe","Pass","Erabiltzailea");
+		Erabiltzaile.add(usua);
+		if (Erabiltzaile.size()==1) {
+			usuario_dentro = 1;
+		}
+		assertEquals(usuario_dentro,1);
+	}
+	@Test
+	void CambiarUsuario() {
+		ArrayList<Erabiltzailea> Erabiltzaile = new ArrayList<Erabiltzailea>();
+		Erabiltzailea usua = new Erabiltzailea("pepe","Pass","Erabiltzailea");
+		Erabiltzaile.add(usua);
+		int i;
+		for (  i=0; i<Erabiltzaile.size();i++) {
+			if ("pepe".equals(Erabiltzaile.get(i).getUsuario()) && "Erabiltzailea".equals(Erabiltzaile.get(i).getProfila()) ) {
+				System.out.println(Erabiltzaile.get(i).getUsuario());
+				System.out.println(Erabiltzaile.get(i).getPass());
+				System.out.println(Erabiltzaile.get(i).getProfila());
+			}
+		}
+		i=i-1;
+		
+		Erabiltzaile.get(i).setUsuario("David");
+		Erabiltzaile.get(i).setPass("Chacon");
+		Erabiltzaile.get(i).setProfila("Admin");
+		
+		System.out.println(Erabiltzaile.get(i).getUsuario());
+		System.out.println(Erabiltzaile.get(i).getPass());
+		System.out.println(Erabiltzaile.get(i).getProfila());
+		
+		int todoOK=0;
+		if(Erabiltzaile.get(i).getUsuario().equals("David")&& Erabiltzaile.get(i).getPass().equals("Chacon")&&Erabiltzaile.get(i).getProfila().equals("Admin")) {
+			todoOK = 1;
+		}
+		assertEquals(todoOK,1);
+	}
+
+	@Test
+	void BorrarUsuario() {
+		ArrayList<Erabiltzailea> Erabiltzaile = new ArrayList<Erabiltzailea>();
+		Erabiltzailea usua = new Erabiltzailea("pepe","Pass","Erabiltzailea");
+		Erabiltzaile.add(usua);
+		for (int i=0; i<Erabiltzaile.size();i++) {
+			if ("pepe".equals(Erabiltzaile.get(i).getUsuario()) && "Erabiltzailea".equals(Erabiltzaile.get(i).getProfila()) ) {
+				Erabiltzaile.remove(i);
+				
+			}
+		}
+		int todoOK=0;
+		if (Erabiltzaile.size()== 0) {
+			todoOK = 1;
+		}
+		assertEquals(todoOK,1);
+	}
+
+	@Test
+	void Taldea_sortu() {
+		ArrayList<clases.copy.Taldeak> Taldea = new ArrayList<clases.copy.Taldeak>();
+		clases.copy.Taldeak Equipo = new clases.copy.Taldeak("PK8888", "Equipo1",
+				"Urdaibai", "", "");
+		Taldea.add(Equipo);
+		int todoOK=0;
+		if (Taldea.size() == 1) {
+			todoOK = 1;
+		}
+		assertEquals(todoOK,1);
+	}
+
+	@Test
+	void CambiarEquipo() {
+		int i;
+		ArrayList<clases.copy.Taldeak> Taldea = new ArrayList<clases.copy.Taldeak>();
+		clases.copy.Taldeak Equipo = new clases.copy.Taldeak("PK8888", "Equipo1",
+				"Urdaibai", "", "");
+		Taldea.add(Equipo);
+		String Buscador = "Equipo1";
+		boolean Encontrado = false;
+		int todoOK=0;
+		for (i = 0; Taldea.size() > i && !Encontrado == true; i++) {
+			if (Taldea.get(i).getIzena().equals(Buscador)) {
+				Encontrado = true;
+				Taldea.get(i).setKod_taldea("PK8888");
+				Taldea.get(i).setIzena("Equipo3");
+				Taldea.get(i).setUdalerri("Equipo4");
+				Taldea.get(i).setPosta("Equipo5");
+				Taldea.get(i).setPosta("Equipo6");
+			}
+		}
+		i = i-1;
+		
+		if (Taldea.get(i).getKod_taldea().equals("PK8888")/*&&Taldea.get(i).getIzena().equals("Equipo3")&& 
+				Taldea.get(i).getUdalerri().equals("Equipo4") && Taldea.get(i).getPosta().equals("Equipo5")&&
+				Taldea.get(i).getPosta().equals("Equipo6")*/) {
+			todoOK=1;
+		}
+		assertEquals(todoOK,1);
+	}
+}
